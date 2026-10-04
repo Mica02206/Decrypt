@@ -14,7 +14,7 @@ insert into public.booth_staff(user_id) values ('PASTE-USER-UUID-HERE');
 
 Only membership added through the dashboard grants staff access. Creating an Auth account by itself does not grant submission rights. There is no public staff registration flow. Optionally disable new sign-ups in Supabase Auth settings.
 
-Sessions stay in memory and end on page refresh. Results are polled every 30 seconds while the page is visible. Existing local browser scores are not imported as verified results. The board shows the fastest 100 escapes; equal times share rank.
+Sessions stay in memory and end on page refresh. Results are polled every 30 seconds while the page is visible. Existing local browser scores are not imported as verified results. The board shows the fastest 5 challenge results; equal times share rank.
 
 ## Verify before booth use
 

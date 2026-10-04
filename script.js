@@ -78,6 +78,12 @@ const supabaseKey = 'sb_publishable_hFzHyRQ5bjJpyIZl5eytag_c85HYwaV';
 let squadRecords = [];
 const rankingRows = document.getElementById('ranking-rows');
 const rankingFeedback = document.getElementById('ranking-feedback');
+function ordinalRank(value) {
+  const lastTwo = value % 100;
+  const suffix = lastTwo >= 11 && lastTwo <= 13 ? 'th' : ({1:'st',2:'nd',3:'rd'}[value % 10] || 'th');
+  return `${value}${suffix}`;
+}
+
 function renderRankings() {
   squadRecords.sort((a, b) => a.seconds - b.seconds);
   rankingRows.replaceChildren();
@@ -87,24 +93,40 @@ function renderRankings() {
     const row = document.createElement('tr');
     row.dataset.place = String(place);
     const rank = document.createElement('td');
-    if (place <= 3) {
-      const medal = document.createElement('i');
-      medal.className = 'fa-solid fa-medal';
-      medal.setAttribute('aria-hidden', 'true');
-      rank.append(medal, ' ');
-    }
-    rank.append(String(place).padStart(2, '0'));
+    rank.textContent = ordinalRank(place);
     const name = document.createElement('td');
     name.textContent = record.name;
     const time = document.createElement('td');
-    time.textContent = `${String(Math.floor(record.seconds / 60)).padStart(2, '0')}:${String(record.seconds % 60).padStart(2, '0')}`;
+    const stopwatch = document.createElement('i');
+    stopwatch.className = 'fa-solid fa-stopwatch';
+    stopwatch.setAttribute('aria-hidden', 'true');
+    time.append(stopwatch, ` ${String(Math.floor(record.seconds / 60)).padStart(2, '0')}:${String(record.seconds % 60).padStart(2, '0')}`);
     row.append(rank, name, time);
     rankingRows.append(row);
   });
+  addOpenRankingPlaces();
   document.getElementById('ranking-count').textContent = `${squadRecords.length} squad${squadRecords.length === 1 ? '' : 's'}`;
   document.getElementById('ranking-empty').hidden = squadRecords.length > 0;
-  document.getElementById('ranking-table-wrap').hidden = squadRecords.length === 0;
+  document.getElementById('ranking-table-wrap').hidden = false;
 }
+// Empty slots are presentation placeholders, never submitted as real results.
+function addOpenRankingPlaces() {
+  for (let index = squadRecords.length; index < 5; index++) {
+    const row = document.createElement('tr');
+    row.dataset.place = String(index + 1);
+    row.className = 'ranking-vacant';
+    for (const value of [ordinalRank(index + 1), '\u2014', '--:--']) {
+      const cell = document.createElement('td');
+      cell.textContent = value;
+      row.append(cell);
+    }
+    row.children[1].setAttribute('aria-label', 'No verified result yet');
+    rankingRows.append(row);
+  }
+}
+addOpenRankingPlaces();
+document.getElementById('ranking-table-wrap').hidden = false;
+
 (async () => {
   const boardStatus = document.getElementById('board-status');
   const staffStatus = document.getElementById('staff-status');
@@ -129,11 +151,11 @@ function renderRankings() {
     refresh.disabled = true;
     try {
       const {data, error} = await client.from('leaderboard').select('id,name,seconds,created_at')
-        .order('seconds').order('created_at').order('id').limit(100);
+        .order('seconds').order('created_at').order('id').limit(5);
       if (error) throw error;
-      squadRecords = data;
+      squadRecords = data.slice(0, 5);
       renderRankings();
-      boardStatus.textContent = 'Top 100 verified escapes. Updates every 30 seconds.';
+      boardStatus.textContent = 'Top 5 verified challenge results. Updates every 30 seconds.';
     } catch {
       boardStatus.textContent = 'Rankings are unavailable. Please try Refresh rankings shortly.';
       if (!squadRecords.length) document.getElementById('ranking-count').textContent = 'Unavailable';
@@ -186,8 +208,8 @@ function renderRankings() {
     event.preventDefault();
     if (!staffUser) { rankingFeedback.textContent = 'Sign in with an authorized staff account first.'; return; }
     const name = document.getElementById('squad-name').value.trim();
-    const minutes = Number(document.getElementById('escape-minutes').value);
-    const seconds = Number(document.getElementById('escape-seconds').value);
+    const minutes = Number(document.getElementById('challenge-minutes').value);
+    const seconds = Number(document.getElementById('challenge-seconds').value);
     const total = minutes * 60 + seconds;
     if (!name || name.length > 40 || !Number.isInteger(minutes) || !Number.isInteger(seconds) || minutes < 0 || seconds < 0 || seconds > 59 || total <= 0 || total > 1200) {
       rankingFeedback.textContent = 'Enter a squad name and a completion time from 00:01 to 20:00.';
