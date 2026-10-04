@@ -21,3 +21,11 @@ body{isolation:isolate;overflow-x:clip}
 .badge,.clock-heading,.clock-overline,.eyebrow,.agent,.restriction,.small-label,.ticket-meta,.map-label,.ranking-summary,.ranking-table th,.ranking-local{font-size:12px}
 .brand small{font-size:10px}
 @media(max-width:480px){.badge,.clock-heading,.clock-overline,.agent,.restriction,.ticket-meta,.map-label,.ranking-summary,.ranking-table th{font-size:10px}.eyebrow,.small-label,.ranking-local{font-size:11px}.hero-badges{flex-wrap:wrap}.clock-heading{gap:8px}.stat>span{font-size:10px}}
+
+/* Original white CSS logo, kept at its natural aspect ratio. */
+.society-logo{display:block;object-fit:contain;height:auto;flex-shrink:0}
+.header-logo{width:58px;filter:drop-shadow(0 0 10px #66f7ed20)}
+.footer-card .organizer{display:flex;align-items:center;gap:16px;max-width:310px}
+.footer-logo{width:84px}
+@media(max-width:850px){.header-logo{width:48px}.footer-card .organizer{max-width:none}}
+@media(max-width:480px){.header-logo{width:42px}.brand{gap:8px}.footer-logo{width:68px}}
