@@ -1869,6 +1869,12 @@ h2,h3,.button,.header-pass {
 
 /* Centered mobile flow while preserving normal page scrolling */
 @media(max-width:850px) {
+  .hero {
+    min-height: calc(100svh - 72px);
+    padding-top: clamp(34px,7svh,64px);
+    padding-bottom: clamp(42px,8svh,72px);
+    justify-content: center;
+  }
   .page-shell>.section:not(.hero) { text-align: center; }
   .inspiration-content {
     justify-items: center;
