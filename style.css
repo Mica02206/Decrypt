@@ -511,3 +511,721 @@ h2,h3,.button,.header-pass {
   .monkey-mark small { font-size: 7px; }
   .hero-heading .subtitle { letter-spacing: .025em; }
 }
+
+/* Compact cinematic Origin section */
+.inspiration {
+  padding-block: 88px;
+}
+.origin-kicker {
+  width: max-content;
+  margin: 0 auto 18px;
+  color: var(--cyan);
+  letter-spacing: .24em;
+}
+.inspiration-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 1080px;
+  min-height: clamp(430px,48vw,580px);
+  overflow: hidden;
+  border: 0;
+  border-radius: 20px;
+  background: #08101d;
+  box-shadow: 0 28px 90px rgba(0,0,0,.46);
+}
+.inspiration-media {
+  position: absolute;
+  inset: 0;
+  min-height: 0;
+}
+.inspiration-media::after {
+  background:
+    linear-gradient(0deg,rgba(3,8,17,.98) 0%,rgba(4,10,20,.74) 31%,transparent 70%),
+    linear-gradient(90deg,rgba(4,9,18,.42),transparent 58%);
+}
+.inspiration-content {
+  position: relative;
+  z-index: 3;
+  min-height: clamp(430px,48vw,580px);
+  padding: 42px 46px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.inspiration-content .eyebrow {
+  margin: 0 0 8px;
+  color: var(--cyan);
+}
+.inspiration-content h2 {
+  max-width: 720px;
+  font-size: clamp(2.1rem,4.7vw,4.2rem);
+  line-height: .98;
+  letter-spacing: -.06em;
+}
+.inspiration-content>p:not(.eyebrow) {
+  margin: 13px 0 20px;
+  color: #c4cfde;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.origin-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.origin-facts span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 11px;
+  border-radius: 4px;
+  background: rgba(8,18,32,.82);
+  color: #dce6ef;
+  font: 700 9px var(--mono);
+  letter-spacing: .08em;
+  backdrop-filter: blur(10px);
+}
+.origin-facts i { color: var(--cyan); }
+.origin-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--cyan);
+  font: 700 11px var(--display);
+  letter-spacing: .08em;
+  transition: gap .2s ease,color .2s ease;
+}
+.origin-action:hover { gap: 16px; color: #fff; }
+@media(max-width:760px) {
+  .inspiration { padding-block: 64px; }
+  .inspiration-card,
+  .inspiration-content { min-height: 500px; }
+  .inspiration-content { padding: 28px 24px; }
+  .inspiration-media img { object-position: 52% center; }
+  .inspiration-media::after {
+    background: linear-gradient(0deg,rgba(3,8,17,.99) 0%,rgba(4,10,20,.84) 42%,transparent 78%);
+  }
+  .inspiration-content h2 { max-width: 10ch; font-size: clamp(2rem,10vw,3rem); }
+  .inspiration-content>p:not(.eyebrow) { font-size: 14px; }
+}
+
+/* Cohesive system below the hero */
+.inspiration,
+.protocol,
+.rankings,
+.admission,
+.footer {
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
+}
+.section-kicker {
+  width: max-content;
+  max-width: 100%;
+  min-height: 28px;
+  margin: 0 auto 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  color: var(--cyan);
+  font: 700 11px/1.4 var(--mono);
+  letter-spacing: .17em;
+  text-align: center;
+}
+.section-kicker i {
+  width: 18px;
+  margin: 0;
+  font-size: 15px;
+  text-align: center;
+}
+.protocol,
+.rankings,
+.admission {
+  position: relative;
+  padding-block: 108px;
+  border-bottom: 0;
+}
+.inspiration::after,
+.protocol::after,
+.rankings::after,
+.admission::after {
+  content: '';
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg,transparent,rgba(102,247,237,.18),rgba(182,156,255,.16),transparent);
+}
+.protocol>h2,
+.ranking-heading h2,
+.admission h2 {
+  font-size: clamp(2.25rem,4.5vw,4rem);
+  line-height: 1.02;
+  letter-spacing: -.06em;
+}
+.protocol>.eyebrow,
+.protocol>h2,
+.protocol>.section-description {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.protocol>.section-description {
+  max-width: 48ch;
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+.role-list {
+  gap: 16px;
+  margin-top: 24px;
+}
+.role-card {
+  min-height: 360px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 0%,color-mix(in srgb,var(--accent) 13%,transparent),transparent 35%),
+    linear-gradient(150deg,rgba(18,34,53,.92),rgba(7,15,28,.96));
+  box-shadow: inset 0 1px rgba(255,255,255,.07),0 22px 60px rgba(0,0,0,.22);
+}
+.role-card::after {
+  left: 0;
+  right: auto;
+  width: 3px;
+  height: 100%;
+  box-shadow: 0 0 22px var(--accent);
+}
+.role-heading {
+  display: grid;
+  grid-template-columns: 54px minmax(0,1fr);
+  align-items: center;
+  gap: 14px;
+}
+.role-emoji {
+  grid-row: 1;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 14px;
+  transform: none;
+  background: color-mix(in srgb,var(--accent) 10%,transparent);
+}
+.role-emoji::before { content: none; }
+.role-emoji i { font-size: 21px; transform: none; }
+.role-heading h3 {
+  font-size: 24px;
+  letter-spacing: -.035em;
+}
+.role-heading h3 span {
+  display: block;
+  margin: 2px 0 0;
+  font-family: var(--body);
+  font-size: 14px;
+}
+.restriction {
+  grid-column: 1 / -1;
+  justify-self: start;
+  border: 0;
+  border-radius: 20px;
+  padding: 6px 10px;
+  background: color-mix(in srgb,var(--accent) 10%,transparent);
+}
+.role-description {
+  margin: 24px 0;
+  color: #aebbd0;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.senses {
+  margin-top: auto;
+  padding-top: 17px;
+  border-top: 1px solid rgba(157,180,211,.14);
+  color: var(--accent);
+  letter-spacing: .08em;
+}
+.ranking-heading {
+  position: relative;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 18px;
+}
+.ranking-heading .section-kicker { margin-bottom: 0; }
+.ranking-heading .ranking-local {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ranking-heading .section-description { margin-top: 12px; }
+.ranking-local {
+  border: 0;
+  border-radius: 20px;
+  padding: 8px 12px;
+  background: rgba(184,247,134,.08);
+}
+.ranking-prize {
+  margin: 0 0 18px;
+  padding: 20px 22px;
+  border: 0;
+  border-radius: 16px;
+  background: linear-gradient(110deg,rgba(92,65,139,.25),rgba(13,26,43,.82));
+  box-shadow: inset 0 1px rgba(255,255,255,.06);
+}
+.prize-icon {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  transform: none;
+  background: rgba(182,156,255,.1);
+}
+.prize-icon i { transform: none; }
+.ranking-prize .eyebrow { margin-bottom: 2px; }
+.ranking-prize p:last-child { margin-top: 3px; }
+.ranking-layout { gap: 14px; }
+.ranking-board,
+.staff-access,
+.ticket,
+.footer-card {
+  border: 0;
+  border-radius: 18px;
+  background: linear-gradient(145deg,rgba(15,29,47,.9),rgba(7,15,27,.94));
+  box-shadow: inset 0 1px rgba(255,255,255,.06),0 22px 60px rgba(0,0,0,.2);
+}
+.ranking-board { padding: 24px 26px; }
+.ranking-table { border-spacing: 0 8px; }
+.ranking-table td {
+  border-block: 0;
+  padding-block: 18px;
+}
+.ranking-table td:first-child { border-left: 0; }
+.ranking-table td:last-child { border-right: 0; }
+.staff-access {
+  max-width: 100%;
+  justify-self: stretch;
+  background: rgba(9,20,34,.72);
+  box-shadow: inset 0 1px rgba(255,255,255,.045);
+}
+.staff-access summary { padding: 15px 18px; }
+.admission {
+  grid-template-columns: minmax(260px,.72fr) minmax(0,1.28fr);
+  gap: 0 56px;
+}
+.admission>.section-kicker {
+  grid-column: 1 / -1;
+  width: max-content;
+  justify-self: center;
+  align-self: auto;
+}
+.admission>.ticket { grid-row: 2 / 5; }
+.section-title-row .section-description {
+  margin-top: 18px;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.price-badge {
+  border: 0;
+  border-radius: 20px;
+  background: rgba(182,156,255,.09);
+  padding: 8px 12px;
+  margin-top: 8px;
+}
+.admission>.priority-matchmaking {
+  margin-top: 24px;
+  padding: 16px;
+  display: block;
+  border: 0;
+  border-radius: 14px;
+  background: rgba(12,35,46,.68);
+  box-shadow: inset 0 1px rgba(102,247,237,.1);
+}
+.admission .matchmaking-status { margin-bottom: 8px; }
+.admission .matchmaking-status i {
+  border: 0;
+  background: rgba(184,247,134,.09);
+}
+.ticket { padding: 20px; }
+.ticket-image {
+  border: 0;
+  border-radius: 9px;
+}
+.ticket-bottom {
+  border-top: 1px solid rgba(157,180,211,.13);
+  margin-top: 16px;
+  padding-top: 16px;
+}
+.ticket-image-hint { opacity: .7; }
+.footer {
+  padding-block: 72px 130px;
+  border: 0;
+}
+.footer-card {
+  padding: 34px 36px;
+  align-items: center;
+}
+.footer-card .organizer {
+  border-left-color: rgba(157,180,211,.14);
+}
+@media(max-width:850px) {
+  .protocol,.rankings,.admission { padding-block: 76px; }
+  .protocol>h2,.ranking-heading h2,.admission h2 { font-size: clamp(2.15rem,8vw,3.3rem); }
+  .role-list { grid-template-columns: 1fr; max-width: 620px; margin-inline: auto; }
+  .role-card { min-height: 0; }
+  .admission { display: block; }
+  .admission>.priority-matchmaking { max-width: none; }
+  .ticket { margin-top: 24px; }
+  .footer-card { padding: 28px; }
+  .ranking-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .ranking-heading .ranking-local {
+    position: static;
+    transform: none;
+  }
+}
+
+/* Center the complete admission flow */
+.admission {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.admission>.section-kicker,
+.admission>.section-title-row,
+.admission>.priority-matchmaking,
+.admission>.ticket {
+  width: 100%;
+}
+.admission>.section-title-row {
+  display: flex;
+  justify-content: center;
+}
+.admission .price-badge { margin-top: 0; }
+.admission>.priority-matchmaking {
+  max-width: 620px;
+  margin: 22px auto 28px;
+  text-align: center;
+}
+.admission .matchmaking-status {
+  justify-content: center;
+}
+.admission>.ticket {
+  max-width: 980px;
+  margin: 0 auto;
+}
+.admission .ticket-meta {
+  justify-content: center;
+  gap: 14px 42px;
+}
+.admission .ticket-image-hint { text-align: center; }
+.admission .ticket-bottom {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.admission .ticket-bottom .button {
+  width: min(100%,260px);
+}
+.admission .claim-details {
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+/* Admission information pairs */
+.admission {
+  display: grid;
+  grid-template-columns: minmax(180px,.34fr) minmax(0,.66fr);
+  align-items: stretch;
+  gap: 18px 22px;
+  text-align: left;
+}
+.admission>.section-kicker {
+  grid-column: 1 / -1;
+  width: max-content;
+  margin-bottom: 10px;
+}
+.admission>.section-title-row {
+  grid-column: 1;
+  width: auto;
+  display: flex;
+  align-items: stretch;
+}
+.admission .price-badge {
+  width: 100%;
+  min-height: 92px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 16px;
+  font-size: 12px;
+}
+.admission>.priority-matchmaking {
+  grid-column: 2;
+  width: auto;
+  max-width: none;
+  min-height: 92px;
+  margin: 0;
+  padding: 17px 20px;
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr);
+  align-items: center;
+  gap: 5px 18px;
+  text-align: left;
+}
+.admission .matchmaking-status {
+  grid-row: 1 / 3;
+  margin: 0;
+  justify-content: flex-start;
+}
+.admission>.priority-matchmaking p {
+  grid-column: 2;
+  margin: 0;
+}
+.admission>.ticket {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+  margin: 4px 0 0;
+}
+.admission .ticket-meta {
+  justify-content: space-between;
+  gap: 12px 30px;
+  text-align: left;
+}
+.admission .ticket-image-hint { text-align: right; }
+.admission .ticket-bottom {
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+}
+.admission .ticket-bottom .button { width: auto; }
+.admission .claim-details {
+  margin-inline: 0;
+  text-align: left;
+}
+@media(max-width:700px) {
+  .admission { display: block; }
+  .admission>.section-kicker { margin-bottom: 22px; }
+  .admission>.section-title-row { display: block; }
+  .admission .price-badge { min-height: 58px; }
+  .admission>.priority-matchmaking {
+    width: 100%;
+    min-height: 0;
+    margin: 12px 0 20px;
+  }
+  .admission>.ticket { margin-top: 0; }
+}
+@media(max-width:480px) {
+  .admission>.priority-matchmaking {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .admission .matchmaking-status,
+  .admission>.priority-matchmaking p { grid-column: 1; grid-row: auto; }
+  .admission .ticket-meta { justify-content: center; text-align: center; }
+  .admission .ticket-image-hint { text-align: center; }
+  .admission .ticket-bottom { flex-direction: column; text-align: center; }
+  .admission .ticket-bottom .button { width: 100%; }
+}
+
+/* Compact admission summary directly below its section label */
+.admission {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.admission>.section-kicker { margin-bottom: 14px; }
+.admission-quick-info {
+  width: min(100%,820px);
+  margin: 0 auto 22px;
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+.admission-quick-info .section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admission-quick-info .price-badge {
+  width: max-content;
+  min-height: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 9px;
+  white-space: nowrap;
+}
+.admission-quick-info .priority-matchmaking {
+  width: 100%;
+  min-height: 68px;
+  margin: 0;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  border: 0;
+  border-radius: 13px;
+  background: rgba(12,35,46,.68);
+  box-shadow: inset 0 1px rgba(102,247,237,.1);
+  text-align: left;
+}
+.admission-quick-info .matchmaking-status {
+  flex: 0 0 auto;
+  margin: 0;
+  justify-content: center;
+}
+.admission-quick-info .matchmaking-status i {
+  width: 28px;
+  height: 28px;
+  border: 0;
+}
+.admission-quick-info .matchmaking-status span { font-size: 9px; }
+.admission-quick-info .priority-matchmaking p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.admission>.ticket {
+  width: min(100%,980px);
+  margin: 0 auto;
+}
+@media(max-width:700px) {
+  .admission-quick-info {
+    width: min(100%,560px);
+    grid-template-columns: 1fr;
+  }
+  .admission-quick-info .price-badge { min-height: 0; }
+  .admission-quick-info .priority-matchmaking { min-height: 64px; }
+}
+@media(max-width:480px) {
+  .admission-quick-info .priority-matchmaking {
+    flex-direction: column;
+    gap: 7px;
+    text-align: center;
+  }
+}
+
+/* Walk-in note belongs to the ticket, not a separate card */
+.admission-quick-info {
+  width: max-content;
+  max-width: 100%;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+}
+.ticket>.ticket-note {
+  width: 100%;
+  min-height: 0;
+  margin: 0 0 16px;
+  padding: 2px 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+}
+.ticket>.ticket-note .matchmaking-status {
+  margin: 0;
+  flex: 0 0 auto;
+}
+.ticket>.ticket-note .matchmaking-status i {
+  width: 26px;
+  height: 26px;
+  border: 0;
+}
+.ticket>.ticket-note .matchmaking-status span { font-size: 9px; }
+.ticket>.ticket-note p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.ticket>.ticket-note p strong { color: var(--text); }
+@media(max-width:600px) {
+  .ticket>.ticket-note {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+/* Match the admission price pill to the staff verification badge */
+.admission-heading {
+  position: relative;
+  width: min(100%,980px);
+  min-height: 32px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admission-heading .section-kicker { margin: 0; }
+.admission-heading .price-badge {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: max-content;
+  min-height: 0;
+  margin: 0;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 20px;
+  background: rgba(182,156,255,.09);
+  color: var(--purple);
+  font: 10px/1.4 var(--mono);
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+@media(max-width:700px) {
+  .admission-heading {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .admission-heading .price-badge {
+    position: static;
+    transform: none;
+  }
+}
+@media(max-width:480px) {
+  .protocol,.rankings,.admission { padding-block: 62px; }
+  .role-card { padding: 22px; }
+  .ranking-heading { align-items: flex-start; }
+  .ranking-prize { align-items: flex-start; padding: 17px; }
+  .ranking-board { padding: 12px 9px 16px; }
+  .ticket { padding: 12px; }
+  .footer-card { padding: 24px 20px; }
+  .section-kicker {
+    gap: 8px;
+    margin-bottom: 22px;
+    font-size: 9px;
+    letter-spacing: .1em;
+  }
+}
