@@ -301,6 +301,29 @@ document.getElementById('ranking-table-wrap').hidden = false;
   resize();syncMotion();
 })();
 
+// Reveal supporting content as it enters the viewport.
+(() => {
+  const items = [...document.querySelectorAll('.inspiration-media,.inspiration-content,.role-card,.ranking-prize,.ranking-board,.ticket,.site-footer')];
+  if (!items.length) return;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  items.forEach((item,index) => {
+    item.classList.add('reveal-item');
+    item.style.setProperty('--reveal-delay',`${(index % 3) * 80}ms`);
+  });
+  if (reducedMotion || !('IntersectionObserver' in window)) {
+    items.forEach(item => item.classList.add('reveal-visible'));
+    return;
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('reveal-visible');
+      observer.unobserve(entry.target);
+    });
+  },{threshold:.12,rootMargin:'0px 0px -7%'});
+  items.forEach(item => observer.observe(item));
+})();
+
 // Keep navigation aligned with the section being read, including rankings.
 let navigationScheduled = false;
 addEventListener('scroll', () => {
