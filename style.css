@@ -1875,18 +1875,19 @@ h2,h3,.button,.header-pass {
     padding-bottom: clamp(20px,3svh,30px);
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto minmax(0,1fr) auto;
+    grid-template-rows: minmax(12px,.65fr) auto auto minmax(36px,1fr);
     align-items: center;
     justify-items: center;
-    gap: 18px;
+    gap: 12px;
   }
-  .hero-badges { align-self: start; }
-  .hero-heading { align-self: center; width: 100%; }
+  .hero-badges { grid-row: 2; align-self: end; }
+  .hero-heading { grid-row: 3; align-self: start; width: 100%; }
   .hero::after {
     content: 'SCROLL TO EXPLORE  ↓';
     position: static;
     width: auto;
     height: auto;
+    grid-row: 4;
     align-self: end;
     color: #718198;
     font: 700 8px/1 var(--mono);
