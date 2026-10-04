@@ -23,6 +23,7 @@
       <a class="brand" href="#home"><img class="society-logo header-logo" src="assets/css-logo-white.png" width="820" height="630" alt="Computer Science Society"><span>DECRYPT<small>CSS / USLS FIELD OPS</small></span></a>
       
       <a class="header-pass" href="#admission">Get your pass <i class="fa-solid fa-ticket" aria-hidden="true"></i></a>
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="section-drawer" aria-label="Open section menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
     </div>
   </header>
 
@@ -88,7 +89,7 @@
       </div>
     </section>
 
-    <footer class="section footer">
+    <footer class="section footer" id="info">
       <div class="site-footer">
         <a class="footer-brand" href="#home" aria-label="DECRYPT home">
           <img class="society-logo footer-logo" src="assets/css-logo-white.png" width="820" height="630" alt="Computer Science Society" loading="lazy">
@@ -105,6 +106,7 @@
     </footer>
   </main>
 
-  <nav class="bottom-navigation" aria-label="Main navigation"><div class="bottom-inner"><a class="nav-item active" href="#home" aria-current="location"><i class="fa-solid fa-terminal" aria-hidden="true"></i><span>HOME</span></a><a class="nav-item" href="#inspiration"><i class="fa-solid fa-gamepad" aria-hidden="true"></i><span>ORIGIN</span></a><a class="nav-item" href="#challenge"><i class="fa-solid fa-lock-open" aria-hidden="true"></i><span>CHALLENGE</span></a><a class="nav-item" href="#rankings"><i class="fa-solid fa-ranking-star" aria-hidden="true"></i><span>RANKINGS</span></a></div></nav>
+  <button class="drawer-backdrop" id="drawer-backdrop" type="button" aria-label="Close section menu" tabindex="-1"></button>
+  <nav class="bottom-navigation" id="section-drawer" aria-label="Section navigation"><div class="bottom-inner"><a class="nav-item active" href="#home" aria-current="location"><i class="fa-solid fa-terminal" aria-hidden="true"></i><span>HOME</span></a><a class="nav-item" href="#inspiration"><i class="fa-solid fa-gamepad" aria-hidden="true"></i><span>ORIGIN</span></a><a class="nav-item" href="#challenge"><i class="fa-solid fa-lock-open" aria-hidden="true"></i><span>CHALLENGE</span></a><a class="nav-item" href="#rankings"><i class="fa-solid fa-ranking-star" aria-hidden="true"></i><span>RANKINGS</span></a><a class="nav-item drawer-only" href="#admission"><i class="fa-solid fa-ticket" aria-hidden="true"></i><span>PASS</span></a><a class="nav-item drawer-only" href="#info"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span>INFO</span></a></div></nav>
 </body>
 </html>

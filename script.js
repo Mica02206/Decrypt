@@ -65,6 +65,57 @@ function syncNavigationWithHash() {
 window.addEventListener('hashchange', syncNavigationWithHash);
 syncNavigationWithHash();
 
+// On mobile, sections behave like individual screens selected from a drawer.
+const mobileSectionQuery = matchMedia('(max-width: 850px)');
+const mobileSections = [...document.querySelectorAll('.page-shell > .section[id]')];
+const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+const sectionDrawer = document.getElementById('section-drawer');
+const drawerBackdrop = document.getElementById('drawer-backdrop');
+
+function setDrawerOpen(open) {
+  document.body.classList.toggle('drawer-open', open);
+  mobileMenuToggle.setAttribute('aria-expanded', String(open));
+  mobileMenuToggle.setAttribute('aria-label', open ? 'Close section menu' : 'Open section menu');
+  mobileMenuToggle.querySelector('i').className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+  if (mobileSectionQuery.matches) sectionDrawer.setAttribute('aria-hidden', String(!open));
+  else sectionDrawer.removeAttribute('aria-hidden');
+}
+
+function showMobileSection(hash, scrollPage = false) {
+  if (!mobileSectionQuery.matches) {
+    document.body.classList.remove('mobile-section-mode');
+    mobileSections.forEach(section => section.classList.remove('mobile-section-active'));
+    setDrawerOpen(false);
+    return;
+  }
+  const requested = document.querySelector(hash);
+  const target = mobileSections.includes(requested) ? requested : document.getElementById('home');
+  document.body.classList.add('mobile-section-mode');
+  mobileSections.forEach(section => section.classList.toggle('mobile-section-active', section === target));
+  setActiveNavigation(`#${target.id}`);
+  setDrawerOpen(false);
+  if (scrollPage) requestAnimationFrame(() => scrollTo({top:0,behavior:'smooth'}));
+}
+
+mobileMenuToggle.addEventListener('click', () => setDrawerOpen(!document.body.classList.contains('drawer-open')));
+drawerBackdrop.addEventListener('click', () => setDrawerOpen(false));
+document.addEventListener('keydown', event => { if (event.key === 'Escape') setDrawerOpen(false); });
+document.addEventListener('click', event => {
+  if (!mobileSectionQuery.matches) return;
+  const link = event.target.closest('a[href^="#"]');
+  if (!link) return;
+  const target = document.querySelector(link.getAttribute('href'));
+  if (!mobileSections.includes(target)) return;
+  event.preventDefault();
+  const hash = `#${target.id}`;
+  if (location.hash !== hash) history.pushState(null,'',hash);
+  showMobileSection(hash,true);
+});
+addEventListener('popstate', () => showMobileSection(location.hash || '#home',true));
+addEventListener('hashchange', () => showMobileSection(location.hash || '#home'));
+mobileSectionQuery.addEventListener('change', () => showMobileSection(location.hash || '#home'));
+showMobileSection(location.hash || '#home');
+
 // Admission is handled at the booth; this reveals instructions only.
 const claimButton = document.getElementById('claim-button');
 const claimDetails = document.getElementById('claim-details');
