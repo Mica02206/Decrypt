@@ -684,10 +684,13 @@ h2,h3,.button,.header-pass {
 .role-list {
   gap: 16px;
   margin-top: 24px;
+  width: min(100%,920px);
+  margin-left: auto;
+  margin-right: auto;
 }
 .role-card {
-  min-height: 360px;
-  padding: 26px;
+  min-height: 290px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   border: 0;
@@ -707,23 +710,23 @@ h2,h3,.button,.header-pass {
 }
 .role-heading {
   display: grid;
-  grid-template-columns: 54px minmax(0,1fr);
+  grid-template-columns: 46px minmax(0,1fr);
   align-items: center;
   gap: 14px;
 }
 .role-emoji {
   grid-row: 1;
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
   border: 0;
-  border-radius: 14px;
+  border-radius: 12px;
   transform: none;
   background: color-mix(in srgb,var(--accent) 10%,transparent);
 }
 .role-emoji::before { content: none; }
-.role-emoji i { font-size: 21px; transform: none; }
+.role-emoji i { font-size: 18px; transform: none; }
 .role-heading h3 {
-  font-size: 24px;
+  font-size: 21px;
   letter-spacing: -.035em;
 }
 .role-heading h3 span {
@@ -737,18 +740,18 @@ h2,h3,.button,.header-pass {
   justify-self: start;
   border: 0;
   border-radius: 20px;
-  padding: 6px 10px;
+  padding: 5px 9px;
   background: color-mix(in srgb,var(--accent) 10%,transparent);
 }
 .role-description {
-  margin: 24px 0;
+  margin: 18px 0;
   color: #aebbd0;
-  font-size: 15px;
-  line-height: 1.65;
+  font-size: 14px;
+  line-height: 1.55;
 }
 .senses {
   margin-top: auto;
-  padding-top: 17px;
+  padding-top: 14px;
   border-top: 1px solid rgba(157,180,211,.14);
   color: var(--accent);
   letter-spacing: .08em;
