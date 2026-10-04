@@ -1753,13 +1753,6 @@ h2,h3,.button,.header-pass {
 }
 .drawer-only { display: none; }
 @media(max-width:850px) {
-  body.mobile-section-mode { min-height: 100svh; }
-  body.mobile-section-mode .page-shell>.section { display: none; }
-  body.mobile-section-mode .page-shell>.section.mobile-section-active {
-    display: block;
-    min-height: calc(100svh - 72px);
-    border-bottom: 0;
-  }
   .header-pass { display: none; }
   .mobile-menu-toggle {
     width: 42px;
@@ -1872,7 +1865,46 @@ h2,h3,.button,.header-pass {
     height: 39px;
     border-radius: 10px;
   }
-  body.mobile-section-mode .page-shell>.section.mobile-section-active {
-    min-height: calc(100svh - 72px);
+}
+
+/* Centered mobile flow while preserving normal page scrolling */
+@media(max-width:850px) {
+  .page-shell>.section:not(.hero) { text-align: center; }
+  .inspiration-content {
+    justify-items: center;
+    text-align: center;
   }
+  .origin-facts { justify-content: center; }
+  .origin-action { justify-self: center; }
+  .role-card {
+    align-items: center;
+    text-align: center;
+  }
+  .role-heading {
+    width: 100%;
+    grid-template-columns: 44px auto;
+    justify-content: center;
+    text-align: left;
+  }
+  .role-heading .restriction { justify-self: center; }
+  .role-description { max-width: 42ch; }
+  .senses { width: 100%; text-align: center; }
+  .ranking-heading {
+    align-items: center;
+    text-align: center;
+  }
+  .rankings .ranking-prize { text-align: center; }
+  .rankings .staff-access summary { text-align: center; }
+  .admission-heading { justify-content: center; }
+  .site-footer {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 22px;
+  }
+  .footer-copyright {
+    grid-column: 1;
+    grid-row: auto;
+    text-align: center;
+  }
+  .footer-actions { justify-content: center; }
 }

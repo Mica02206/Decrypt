@@ -65,7 +65,7 @@ function syncNavigationWithHash() {
 window.addEventListener('hashchange', syncNavigationWithHash);
 syncNavigationWithHash();
 
-// On mobile, sections behave like individual screens selected from a drawer.
+// On mobile, the drawer provides smooth jumps while the full page stays scrollable.
 const mobileSectionQuery = matchMedia('(max-width: 850px)');
 const mobileSections = [...document.querySelectorAll('.page-shell > .section[id]')];
 const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
@@ -83,18 +83,14 @@ function setDrawerOpen(open) {
 
 function showMobileSection(hash, scrollPage = false) {
   if (!mobileSectionQuery.matches) {
-    document.body.classList.remove('mobile-section-mode');
-    mobileSections.forEach(section => section.classList.remove('mobile-section-active'));
     setDrawerOpen(false);
     return;
   }
   const requested = document.querySelector(hash);
   const target = mobileSections.includes(requested) ? requested : document.getElementById('home');
-  document.body.classList.add('mobile-section-mode');
-  mobileSections.forEach(section => section.classList.toggle('mobile-section-active', section === target));
   setActiveNavigation(`#${target.id}`);
   setDrawerOpen(false);
-  if (scrollPage) requestAnimationFrame(() => scrollTo({top:0,behavior:'smooth'}));
+  if (scrollPage) requestAnimationFrame(() => target.scrollIntoView({behavior:'smooth',block:'start'}));
 }
 
 mobileMenuToggle.addEventListener('click', () => setDrawerOpen(!document.body.classList.contains('drawer-open')));
