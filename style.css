@@ -1875,13 +1875,20 @@ h2,h3,.button,.header-pass {
     padding-bottom: clamp(20px,3svh,30px);
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(12px,.65fr) auto auto minmax(36px,1fr);
+    grid-template-rows: minmax(10px,.35fr) auto auto minmax(30px,.65fr);
     align-items: center;
     justify-items: center;
-    gap: 12px;
+    gap: clamp(20px,3.2svh,28px);
   }
   .hero-badges { grid-row: 2; align-self: end; }
   .hero-heading { grid-row: 3; align-self: start; width: 100%; }
+  .hero-heading .eyebrow { margin-bottom: 18px; }
+  .hero-heading .subtitle { margin-top: 14px; }
+  .hero-heading .hero-intro {
+    margin-top: 26px;
+    line-height: 1.95;
+  }
+  .hero-heading .hero-link { margin-top: 10px; }
   .hero::after {
     content: 'SCROLL TO EXPLORE  ↓';
     position: static;
