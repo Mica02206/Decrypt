@@ -6,7 +6,7 @@ create table public.booth_staff (
 create table public.leaderboard (
   id uuid primary key default gen_random_uuid(),
   name text not null check (char_length(trim(name)) between 1 and 40),
-  seconds integer not null check (seconds between 1 and 1200),
+  seconds integer not null check (seconds between 1 and 900),
   created_at timestamptz not null default now(),
   submitted_by uuid not null default auth.uid() references auth.users(id)
 );

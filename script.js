@@ -1,8 +1,8 @@
 'use strict';
 
 // Use an elapsed-time clock so background-tab throttling does not cause drift.
-const initialTimeMs = (17 * 60 + 34) * 1000 + 520;
-const fullTimeMs = 20 * 60 * 1000;
+const initialTimeMs = (14 * 60 + 34) * 1000 + 520;
+const fullTimeMs = 15 * 60 * 1000;
 const timer = document.getElementById('countdown');
 const progress = document.getElementById('timer-progress');
 const progressTrack = progress?.parentElement;
@@ -260,8 +260,8 @@ document.getElementById('ranking-table-wrap').hidden = false;
     const minutes = Number(document.getElementById('challenge-minutes').value);
     const seconds = Number(document.getElementById('challenge-seconds').value);
     const total = minutes * 60 + seconds;
-    if (!name || name.length > 40 || !Number.isInteger(minutes) || !Number.isInteger(seconds) || minutes < 0 || seconds < 0 || seconds > 59 || total <= 0 || total > 1200) {
-      rankingFeedback.textContent = 'Enter a squad name and a completion time from 00:01 to 20:00.';
+    if (!name || name.length > 40 || !Number.isInteger(minutes) || !Number.isInteger(seconds) || minutes < 0 || seconds < 0 || seconds > 59 || total <= 0 || total > 900) {
+      rankingFeedback.textContent = 'Enter a squad name and a completion time from 00:01 to 15:00.';
       return;
     }
     const button = form.querySelector('button');

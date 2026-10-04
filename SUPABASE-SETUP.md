@@ -21,7 +21,7 @@ Sessions stay in memory and end on page refresh. Results are polled every 30 sec
 - Signed out: rankings load; insert attempts are rejected by the database.
 - Signed in as a non-staff account: no score form; direct inserts are rejected.
 - Approved staff: valid scores appear after submission and in another browser.
-- Times outside 1–1200 seconds and blank names are rejected by the database.
+- Times outside 1–900 seconds and blank names are rejected by the database.
 - Staff cannot grant membership, change another result, or delete results through the public API.
 
 To revoke a staff member, delete their UUID from `booth_staff` in the dashboard. To correct an erroneous result, use the dashboard Table Editor; the website intentionally has no edit/delete permission.
