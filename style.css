@@ -29,3 +29,55 @@ body{isolation:isolate;overflow-x:clip}
 .footer-logo{width:84px}
 @media(max-width:850px){.header-logo{width:48px}.footer-card .organizer{max-width:none}}
 @media(max-width:480px){.header-logo{width:42px}.brand{gap:8px}.footer-logo{width:68px}}
+
+/* Hero: a centered introduction with one compact mission console. */
+.hero {
+  grid-template-columns:minmax(0,1fr);
+  grid-template-areas:'badges' 'heading' 'clock' 'stats' 'match';
+  gap:28px;
+  padding-top:52px;
+  padding-bottom:64px;
+}
+.hero-badges { justify-content:center; }
+.hero-heading { text-align:center; max-width:850px; justify-self:center; }
+.hero-heading .eyebrow { margin-bottom:18px; font-size:11px; letter-spacing:.18em; }
+.hero-heading h1 { font-size:clamp(4rem,10vw,8rem); line-height:1; letter-spacing:-.065em; }
+.hero-heading .subtitle { margin-top:14px; font:700 clamp(1rem,2.2vw,1.6rem)/1.5 var(--mono); letter-spacing:.12em; }
+.hero-intro { margin:20px auto 0; max-width:55ch; font-size:15px; line-height:1.75; }
+.hero-link { margin:14px 10px 0; padding:10px 2px; font-size:12px; }
+.hero .clock-card {
+  width:100%; max-width:760px; justify-self:center; margin:12px 0 0;
+  padding:24px 28px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:14px 30px; align-items:center; background:linear-gradient(130deg,#172b3eeb,#0d172ae8);
+}
+.clock-card .clock-overline { display:none; }
+.clock-card .clock-heading { grid-column:1/-1; font-size:11px; }
+.clock-card .timer-line { grid-column:1; grid-row:2; padding:14px 0; justify-content:flex-start; }
+.clock-card .timer { font-size:clamp(2.2rem,4.5vw,3.2rem); }
+.clock-card .progress-track { grid-column:1; grid-row:3; }
+.clock-card .clock-description { grid-column:2; grid-row:2; margin:0; text-align:left; font-size:13px; line-height:1.65; }
+.clock-card .button { grid-column:2; grid-row:3/5; min-height:48px; font-size:12px; }
+.clock-card .orbital-rings { inset:-26px 16px; opacity:.22; }
+.clock-card .orbital-rings span:nth-child(3) { inset:-10px; }
+.hero .stats { width:100%; max-width:650px; justify-self:center; text-align:center; margin:6px 0 0; }
+.hero .stat { padding:0 18px; }
+.hero .stat>span { font-size:10px; }
+.hero .stat strong { font-size:19px; }
+.hero .matchmaking { width:100%; max-width:880px; justify-self:center; margin:12px 0 0; }
+@media(max-width:600px) {
+  .hero { padding-top:34px; gap:24px; }
+  .hero-heading .eyebrow { font-size:10px; letter-spacing:.09em; }
+  .hero-heading h1 { font-size:clamp(3.3rem,15vw,5rem); }
+  .hero-heading .subtitle { font-size:clamp(.75rem,3.2vw,1rem); letter-spacing:.07em; }
+  .hero-intro { font-size:14px; }
+  .hero-link { margin:8px 7px 0; font-size:11px; }
+  .hero .clock-card { display:flex; flex-direction:column; align-items:stretch; padding:22px 18px; gap:16px; margin-top:0; }
+  .clock-card .clock-heading { font-size:10px; }
+  .clock-card .timer-line { justify-content:center; padding:8px 0; }
+  .clock-card .timer { font-size:clamp(2.2rem,10vw,3.2rem); }
+  .clock-card .clock-description { text-align:center; max-width:36ch; margin:auto; }
+  .clock-card .orbital-rings { inset:-10px 8px; }
+  .hero .stat { padding:0 8px; }
+  .hero .stat strong { font-size:15px; }
+  .hero .stat>span { font-size:9px; }
+}
