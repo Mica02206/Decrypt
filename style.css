@@ -1218,6 +1218,109 @@ h2,h3,.button,.header-pass {
   }
 }
 
+/* Rankings: one continuous surface instead of stacked cards */
+.rankings .ranking-prize {
+  margin: 0;
+  padding: 15px 0 18px;
+  border: 0;
+  border-bottom: 1px solid rgba(157,180,211,.14);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.rankings .prize-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 0;
+  background: transparent;
+  font-size: 19px;
+}
+.rankings .ranking-prize .eyebrow { margin-bottom: 1px; }
+.rankings .ranking-prize h3 { font-size: 17px; }
+.rankings .ranking-prize p:last-child { margin-top: 2px; }
+.rankings .ranking-layout { gap: 0; }
+.rankings .ranking-board {
+  padding: 18px 0 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.rankings .ranking-summary {
+  padding: 0 4px 10px;
+}
+.rankings .ranking-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.rankings .ranking-table thead {
+  border-bottom: 1px solid rgba(157,180,211,.2);
+}
+.rankings .ranking-table th {
+  padding: 12px 16px;
+  color: #8290a4;
+}
+.rankings .ranking-table td,
+.rankings .ranking-table td:first-child,
+.rankings .ranking-table td:last-child {
+  border: 0;
+  border-bottom: 1px solid rgba(157,180,211,.12);
+  border-radius: 0;
+  background: transparent;
+  padding: 20px 16px;
+}
+.rankings .ranking-table tr[data-place="1"] td {
+  background: linear-gradient(90deg,rgba(102,247,237,.1),rgba(102,247,237,.025));
+}
+.rankings .ranking-table tr[data-place="2"] td {
+  background: linear-gradient(90deg,rgba(182,156,255,.06),transparent);
+}
+.rankings .ranking-table tr[data-place="3"] td {
+  background: linear-gradient(90deg,rgba(184,247,134,.045),transparent);
+}
+.rankings #board-status {
+  padding: 10px 4px;
+}
+.rankings #refresh-rankings {
+  min-height: 34px;
+  margin: 3px 0 3px 12px;
+  padding: 7px 3px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--cyan);
+}
+.rankings .ranking-empty {
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(157,180,211,.12);
+}
+.rankings .staff-access {
+  max-width: 100%;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.rankings .staff-access summary {
+  padding: 15px 4px;
+  border-bottom: 1px solid rgba(157,180,211,.12);
+}
+.rankings .staff-panel {
+  max-width: 540px;
+  margin-left: auto;
+  padding: 20px 0 0;
+}
+@media(max-width:600px) {
+  .rankings .ranking-prize { align-items: center; }
+  .rankings .prize-icon { flex-basis: 26px; width: 26px; }
+  .rankings .ranking-table th { padding: 10px 8px; }
+  .rankings .ranking-table td,
+  .rankings .ranking-table td:first-child,
+  .rankings .ranking-table td:last-child { padding: 17px 8px; }
+  .rankings .ranking-board { padding: 14px 0 0; }
+}
+
 /* Origin: full uncropped image with a compact information strip */
 .inspiration-card {
   display: block;
