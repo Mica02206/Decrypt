@@ -1871,9 +1871,27 @@ h2,h3,.button,.header-pass {
 @media(max-width:850px) {
   .hero {
     min-height: calc(100svh - 72px);
-    padding-top: clamp(34px,7svh,64px);
-    padding-bottom: clamp(42px,8svh,72px);
-    justify-content: center;
+    padding-top: clamp(24px,4svh,38px);
+    padding-bottom: clamp(20px,3svh,30px);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0,1fr) auto;
+    align-items: center;
+    justify-items: center;
+    gap: 18px;
+  }
+  .hero-badges { align-self: start; }
+  .hero-heading { align-self: center; width: 100%; }
+  .hero::after {
+    content: 'SCROLL TO EXPLORE  ↓';
+    position: static;
+    width: auto;
+    height: auto;
+    align-self: end;
+    color: #718198;
+    font: 700 8px/1 var(--mono);
+    letter-spacing: .16em;
+    animation: scroll-cue 2.2s ease-in-out infinite;
   }
   .page-shell>.section:not(.hero) { text-align: center; }
   .inspiration-content {
@@ -1913,4 +1931,11 @@ h2,h3,.button,.header-pass {
     text-align: center;
   }
   .footer-actions { justify-content: center; }
+}
+@keyframes scroll-cue {
+  0%,100% { opacity:.45; transform:translateY(0); }
+  50% { opacity:1; transform:translateY(4px); }
+}
+@media(prefers-reduced-motion:reduce) {
+  .hero::after { animation:none; }
 }
