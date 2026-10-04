@@ -1223,8 +1223,10 @@ h2,h3,.button,.header-pass {
   display: block;
   max-width: 920px;
   min-height: 0;
-  overflow: hidden;
-  background: linear-gradient(145deg,rgba(15,29,47,.95),rgba(7,15,27,.98));
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 .inspiration-media {
   position: relative;
@@ -1232,6 +1234,8 @@ h2,h3,.button,.header-pass {
   width: 100%;
   min-height: 0;
   aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 18px;
   background: #050914;
 }
 .inspiration-media img {
@@ -1248,7 +1252,7 @@ h2,h3,.button,.header-pass {
 .inspiration-content {
   position: static;
   min-height: 0;
-  padding: 24px 28px 26px;
+  padding: 18px 4px 0;
   display: grid;
   grid-template-columns: auto minmax(0,1fr) auto;
   grid-template-areas: 'origin-label origin-facts origin-action';
@@ -1287,7 +1291,7 @@ h2,h3,.button,.header-pass {
   .inspiration-media { min-height: 0; aspect-ratio: 16 / 9; }
   .inspiration-media img { object-fit: contain; object-position: center; }
   .inspiration-content {
-    padding: 21px 19px 23px;
+    padding: 16px 2px 0;
     grid-template-columns: 1fr;
     grid-template-areas:
       'origin-label'
