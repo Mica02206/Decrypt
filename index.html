@@ -8,7 +8,7 @@
   <title>DECRYPT — Countdown to Chaos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
@@ -28,7 +28,11 @@
 
   <main id="main" class="page-shell">
     <section class="hero section" id="home" aria-labelledby="hero-title">
-      <div class="hero-badges"><span class="badge"><i class="fa-solid fa-microchip" aria-hidden="true"></i>CSS // USLS FIELD OPS</span><span class="badge open"><span class="dot"></span>OPEN TIL 4:30 PM</span></div>
+      <div class="hero-badges sensory-mark" aria-label="The three restricted senses: mute, deaf, and blind">
+        <div class="monkey-mark"><span class="monkey-icon" aria-hidden="true">🙊</span><small>MUTE</small></div>
+        <div class="monkey-mark"><span class="monkey-icon" aria-hidden="true">🙉</span><small>DEAF</small></div>
+        <div class="monkey-mark"><span class="monkey-icon" aria-hidden="true">🙈</span><small>BLIND</small></div>
+      </div>
       <div class="hero-heading"><p class="eyebrow ruled signal-text">YOUR SENSES ARE THE CHALLENGE.</p><h1 id="hero-title" class="glitch-title" data-text="DECRYPT">DECRYPT</h1><p class="subtitle">COUNTDOWN TO <span class="chaos-text" data-text="CHAOS.">CHAOS.</span></p><p class="hero-intro">One cannot speak. One cannot hear. One cannot see.<br>Only together can you beat the clock.</p><a class="hero-link" href="#admission">Explore your admission pass <i class="fa-solid fa-ticket" aria-hidden="true"></i></a><a class="hero-link ranking-link" href="#rankings">Squad rankings <i class="fa-solid fa-trophy" aria-hidden="true"></i></a></div>
     </section>
 
@@ -52,7 +56,6 @@
           <div class="stat"><span><i class="fa-solid fa-ticket" aria-hidden="true"></i> PASS ENTRY</span><strong class="purple">100 PHP</strong></div>
         </div>
       </article>
-      <aside class="matchmaking"><i class="fa-solid fa-user-plus" aria-hidden="true"></i><div><div class="matchmaking-heading"><h2>SQUAD MATCHMAKING PROTOCOL</h2><span>WALK-INS WELCOME</span></div><p>Solo or duo? No problem — walk-in players can match up with other agents directly at the booth!</p></div></aside>
     </section>
 
     <section class="section protocol" id="challenge" aria-labelledby="protocol-title">
@@ -78,18 +81,16 @@
     <section class="section admission" id="admission" aria-labelledby="admission-title">
       <p class="eyebrow">CLASSIFIED PASS // CN:A01</p>
       <div class="section-title-row"><h2 id="admission-title">Your squad.<br>Your next challenge.</h2><span class="price-badge">3 AGENTS / 100 PHP</span><p class="section-description">Bring your trio or find your teammates at the booth. Your mission starts in Room MM31.</p></div>
+      <aside class="matchmaking priority-matchmaking">
+        <div class="matchmaking-status"><i class="fa-solid fa-user-group" aria-hidden="true"></i><span>WALK-INS WELCOME</span></div>
+        <p><strong>Missing an agent?</strong> Solo and duo players can team up with others at the booth.</p>
+      </aside>
       <div class="ticket"><div class="ticket-meta"><span>BATCH: OCT 5–9</span><span>ACCESS: 8:30 AM–4:30 PM</span></div><a class="ticket-art ticket-image" href="assets/decrypt-ticket.png" target="_blank" rel="noopener" aria-label="View the full-size DECRYPT admission ticket (opens in a new tab)"><img src="assets/decrypt-ticket.png" alt="DECRYPT Countdown to Chaos admission ticket, CN:A01. Room MM31, October 5 to 9, 8:30 AM to 4:30 PM. Three for 100 PHP. Organized by Computer Science Society." width="1300" height="390" loading="lazy"></a><p class="ticket-image-hint">Tap the ticket to view full size.</p><div class="ticket-bottom"><div><p class="small-label">DESIGNATED BOOTH</p><strong>ROOM MM31</strong></div><button id="claim-button" class="button primary" type="button" aria-expanded="false" aria-controls="claim-details"><i class="fa-solid fa-user-check" aria-hidden="true"></i> CLAIM AT BOOTH</button></div><p id="claim-details" class="claim-details" hidden>Visit Room MM31 on the 3rd floor of Mutien Marie Building. Pay ₱100 for your squad of three and confirm your slot with the booth coordinators. This page does not reserve a slot.</p></div>
-    </section>
-
-    <section class="section location" id="location" aria-labelledby="location-title">
-      <p class="eyebrow"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> NAV PROTOCOL // MM31</p><h2 id="location-title">Your mission starts here.</h2><p class="section-description">Follow campus coordinates to Mutien Marie Building.</p>
-      <div class="coordinate-card"><div><p class="small-label">PRIMARY COORDINATE</p><h3>ROOM MM31</h3><p><i class="fa-solid fa-building" aria-hidden="true"></i> Mutien Marie Building (Locator #39)</p></div><div class="floor"><span>FLOOR</span><strong>3RD</strong></div></div>
-      <div class="map-card"><div class="map-label"><span><i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> CAMPUS TACTICAL MAP</span><span>MUTIEN MARIE // #39</span></div><a class="campus-map-link" href="assets/campus-map.webp" target="_blank" rel="noopener" aria-label="Open full-size campus map in a new tab"><img src="assets/campus-map.webp" width="1920" height="2133" loading="lazy" alt="University of St. La Salle college map. Mutien Marie Building is locator 39, near The Forum (13) and Nurse Cafeteria (14)."><span class="map-expand"><i class="fa-solid fa-expand" aria-hidden="true"></i> View full-size map</span></a><div class="navigation-brief"><p class="small-label">FIELD NAVIGATION BRIEF</p><p><i class="fa-solid fa-route" aria-hidden="true"></i><span>Enter via <strong>Gate 1 or Gate 2</strong>, proceed past The Forum (#13) and Nurse Cafeteria (#14), then head to <strong class="green">Mutien Marie Building, 3rd Floor, Room 31.</strong></span></p></div></div>
     </section>
 
     <footer class="section footer"><div class="footer-card"><h2><i class="fa-solid fa-fingerprint" aria-hidden="true"></i> Ready To Face The Chaos?</h2><p>Assemble your trio or walk up solo or in pairs — our booth coordinators will pair you with fellow operatives on-site. Secure your slot directly at Room MM31.</p><div class="organizer"><img class="society-logo footer-logo" src="assets/css-logo-white.png" width="820" height="630" alt="" loading="lazy"><span>ORGANIZED BY:<strong>COMPUTER SCIENCE SOCIETY</strong></span></div></div></footer>
   </main>
 
-  <nav class="bottom-navigation" aria-label="Main navigation"><div class="bottom-inner"><a class="nav-item active" href="#home" aria-current="location"><i class="fa-solid fa-terminal" aria-hidden="true"></i><span>HOME</span></a><a class="nav-item" href="#challenge"><i class="fa-solid fa-lock-open" aria-hidden="true"></i><span>CHALLENGE</span></a><a class="nav-item" href="#rankings"><i class="fa-solid fa-ranking-star" aria-hidden="true"></i><span>RANKINGS</span></a><a class="nav-item" href="#location"><i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i><span>MAP</span></a></div></nav>
+  <nav class="bottom-navigation" aria-label="Main navigation"><div class="bottom-inner"><a class="nav-item active" href="#home" aria-current="location"><i class="fa-solid fa-terminal" aria-hidden="true"></i><span>HOME</span></a><a class="nav-item" href="#inspiration"><i class="fa-solid fa-gamepad" aria-hidden="true"></i><span>ORIGIN</span></a><a class="nav-item" href="#challenge"><i class="fa-solid fa-lock-open" aria-hidden="true"></i><span>CHALLENGE</span></a><a class="nav-item" href="#rankings"><i class="fa-solid fa-ranking-star" aria-hidden="true"></i><span>RANKINGS</span></a></div></nav>
 </body>
 </html>
