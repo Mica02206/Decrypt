@@ -33,7 +33,7 @@ body{isolation:isolate;overflow-x:clip}
 /* Hero: a centered introduction with one compact mission console. */
 .hero {
   grid-template-columns:minmax(0,1fr);
-  grid-template-areas:'badges' 'heading' 'clock' 'stats' 'match';
+  grid-template-areas:'badges' 'heading' 'clock' 'match';
   gap:28px;
   padding-top:52px;
   padding-bottom:64px;
@@ -46,24 +46,29 @@ body{isolation:isolate;overflow-x:clip}
 .hero-intro { margin:20px auto 0; max-width:55ch; font-size:15px; line-height:1.75; }
 .hero-link { margin:14px 10px 0; padding:10px 2px; font-size:12px; }
 .hero .clock-card {
-  width:100%; max-width:760px; justify-self:center; margin:12px 0 0;
-  padding:24px 28px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:14px 30px; align-items:center; background:linear-gradient(130deg,#172b3eeb,#0d172ae8);
+  width:100%; max-width:880px; justify-self:center; margin:12px 0 0;
+  padding:26px 30px 0; display:grid; grid-template-columns:minmax(0,1fr) auto;
+  gap:16px 28px; align-items:center; background:linear-gradient(145deg,#172b3eeb,#0b1426f2);
 }
 .clock-card .clock-overline { display:none; }
-.clock-card .clock-heading { grid-column:1/-1; font-size:11px; }
-.clock-card .timer-line { grid-column:1; grid-row:2; padding:14px 0; justify-content:flex-start; }
-.clock-card .timer { font-size:clamp(2.2rem,4.5vw,3.2rem); }
+.clock-card .clock-heading { grid-column:1/-1; grid-row:1; font-size:11px; }
+.clock-card .timer-line { grid-column:1; grid-row:2; padding:12px 0 4px; justify-content:flex-start; }
+.clock-card .timer { font-size:clamp(2.5rem,5vw,3.7rem); }
 .clock-card .progress-track { grid-column:1; grid-row:3; }
-.clock-card .clock-description { grid-column:2; grid-row:2; margin:0; text-align:left; font-size:13px; line-height:1.65; }
-.clock-card .button { grid-column:2; grid-row:3/5; min-height:48px; font-size:12px; }
+.clock-card .clock-description { grid-column:2; grid-row:2; margin:0; max-width:30ch; text-align:left; font-size:13px; line-height:1.65; }
+.clock-card .button { grid-column:2; grid-row:3; width:240px; min-height:48px; font-size:12px; }
 .clock-card .orbital-rings { inset:-26px 16px; opacity:.22; }
 .clock-card .orbital-rings span:nth-child(3) { inset:-10px; }
-.hero .stats { width:100%; max-width:650px; justify-self:center; text-align:center; margin:6px 0 0; }
-.hero .stat { padding:0 18px; }
-.hero .stat>span { font-size:10px; }
-.hero .stat strong { font-size:19px; }
-.hero .matchmaking { width:100%; max-width:880px; justify-self:center; margin:12px 0 0; }
+.clock-card .stats { grid-area:auto; grid-column:1/-1; grid-row:4; width:calc(100% + 60px); margin:18px -30px 0; padding:0 30px; min-height:92px; align-items:center; background:#07101d8c; border-top:1px solid var(--line); border-radius:0 0 15px 15px; }
+.clock-card .stat { padding:16px 28px; text-align:left; }
+.clock-card .stat:first-child { padding-left:0; }
+.clock-card .stat>span { font-size:10px; }
+.clock-card .stat>span i { width:16px; color:#7d91aa; margin-right:5px; }
+.clock-card .stat strong { font-size:18px; }
+.hero .matchmaking { width:100%; max-width:700px; justify-self:center; margin:4px 0 0; padding:16px 20px; border-radius:12px; }
+.hero .matchmaking>i { display:grid; place-items:center; width:42px; height:42px; flex-shrink:0; border-radius:50%; background:#66f7ed12; }
+.hero .matchmaking-heading { justify-content:flex-start; }
+.hero .matchmaking-heading>span { margin-left:auto; }
 @media(max-width:600px) {
   .hero { padding-top:34px; gap:24px; }
   .hero-heading .eyebrow { font-size:10px; letter-spacing:.09em; }
@@ -71,15 +76,125 @@ body{isolation:isolate;overflow-x:clip}
   .hero-heading .subtitle { font-size:clamp(.75rem,3.2vw,1rem); letter-spacing:.07em; }
   .hero-intro { font-size:14px; }
   .hero-link { margin:8px 7px 0; font-size:11px; }
-  .hero .clock-card { display:flex; flex-direction:column; align-items:stretch; padding:22px 18px; gap:16px; margin-top:0; }
+  .hero .clock-card { display:flex; flex-direction:column; align-items:stretch; padding:22px 18px 0; gap:16px; margin-top:0; }
   .clock-card .clock-heading { font-size:10px; }
   .clock-card .timer-line { justify-content:center; padding:8px 0; }
   .clock-card .timer { font-size:clamp(2.2rem,10vw,3.2rem); }
   .clock-card .clock-description { text-align:center; max-width:36ch; margin:auto; }
   .clock-card .orbital-rings { inset:-10px 8px; }
-  .hero .stat { padding:0 8px; }
-  .hero .stat strong { font-size:15px; }
-  .hero .stat>span { font-size:9px; }
+  .clock-card .button { width:100%; }
+  .clock-card .stats { width:calc(100% + 36px); margin:4px -18px 0; padding:0 10px; min-height:78px; border-radius:0 0 15px 15px; }
+  .clock-card .stat { padding:14px 8px; text-align:center; }
+  .clock-card .stat:first-child { padding-left:8px; }
+  .clock-card .stat strong { font-size:14px; }
+  .clock-card .stat>span { font-size:8px; }
+  .clock-card .stat>span i { display:none; }
+  .hero .matchmaking { align-items:flex-start; }
+  .hero .matchmaking-heading>span { margin-left:0; }
+}
+
+/* Gameplay inspiration replaces the simulated timer with a clearer story. */
+.inspiration-card {
+  grid-area:clock;
+  width:100%;
+  max-width:980px;
+  justify-self:center;
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);
+  overflow:hidden;
+  border:1px solid #83abc84d;
+  border-radius:18px;
+  background:linear-gradient(145deg,#14263bdc,#0a1325f2);
+  box-shadow:0 30px 90px #0007,inset 0 1px #e7faff14;
+}
+.inspiration-media {
+  position:relative;
+  min-height:360px;
+  overflow:hidden;
+  background:#0a1020;
+}
+.inspiration-media::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,transparent 55%,#0c172bd9 100%),linear-gradient(0deg,#060b1599,transparent 42%);
+  pointer-events:none;
+}
+.inspiration-media img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transform:scale(1.025);
+  animation:inspiration-drift 14s ease-in-out infinite alternate;
+}
+.inspiration-label {
+  position:absolute;
+  left:20px;
+  bottom:18px;
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:8px 11px;
+  border:1px solid #66f7ed5c;
+  border-radius:4px;
+  background:#07111dd9;
+  color:var(--cyan);
+  font:10px var(--mono);
+  letter-spacing:.1em;
+}
+.image-scan {
+  position:absolute;
+  z-index:2;
+  inset:-30% 0 auto;
+  height:26%;
+  background:linear-gradient(transparent,#66f7ed10,transparent);
+  animation:image-scan 5s linear infinite;
+  pointer-events:none;
+}
+.inspiration-content {
+  padding:34px 30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.inspiration-content .eyebrow { margin-bottom:10px; }
+.inspiration-content h2 { font-size:clamp(1.7rem,2.7vw,2.4rem); }
+.inspiration-content>p:not(.eyebrow) { margin:18px 0 26px; color:var(--muted); font-size:14px; line-height:1.8; }
+.inspiration-content .button { align-self:flex-start; width:auto; }
+.inspiration-card .stats {
+  grid-area:auto;
+  grid-column:1/-1;
+  margin:0;
+  padding:0 28px;
+  min-height:92px;
+  align-items:center;
+  border-top:1px solid var(--line);
+  background:#060d19b3;
+}
+.inspiration-card .stat { padding:16px 28px; text-align:left; }
+.inspiration-card .stat:first-child { padding-left:0; }
+.inspiration-card .stat>span { font-size:10px; }
+.inspiration-card .stat>span i { width:16px; margin-right:5px; color:#7d91aa; }
+.inspiration-card .stat strong { font-size:18px; }
+@keyframes inspiration-drift { to { transform:scale(1.075) translateX(-1%); } }
+@keyframes image-scan { to { top:115%; } }
+@media(max-width:760px) {
+  .inspiration-card { grid-template-columns:1fr; }
+  .inspiration-media { min-height:250px; }
+  .inspiration-media::after { background:linear-gradient(0deg,#0b1528d6,transparent 58%); }
+  .inspiration-content { padding:26px 22px; }
+  .inspiration-content .button { width:100%; }
+  .inspiration-card .stats { padding:0 10px; min-height:78px; }
+  .inspiration-card .stat { padding:14px 8px; text-align:center; }
+  .inspiration-card .stat:first-child { padding-left:8px; }
+  .inspiration-card .stat>span { font-size:8px; }
+  .inspiration-card .stat>span i { display:none; }
+  .inspiration-card .stat strong { font-size:14px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .inspiration-media img,.image-scan { animation:none!important; }
 }
 
 /* Signal effects: limited to display text so the interface remains readable. */

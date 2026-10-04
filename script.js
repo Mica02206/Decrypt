@@ -5,7 +5,7 @@ const initialTimeMs = (17 * 60 + 34) * 1000 + 520;
 const fullTimeMs = 20 * 60 * 1000;
 const timer = document.getElementById('countdown');
 const progress = document.getElementById('timer-progress');
-const progressTrack = progress.parentElement;
+const progressTrack = progress?.parentElement;
 const startedAt = performance.now();
 let countdownInterval;
 
@@ -30,11 +30,13 @@ function updateCountdown() {
   }
 }
 
-renderCountdown(initialTimeMs);
-countdownInterval = setInterval(updateCountdown, 1000);
-document.addEventListener('visibilitychange', () => {
-  if (!document.hidden) updateCountdown();
-});
+if (timer && progress && progressTrack) {
+  renderCountdown(initialTimeMs);
+  countdownInterval = setInterval(updateCountdown, 1000);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) updateCountdown();
+  });
+}
 
 const navigationItems = [...document.querySelectorAll('.nav-item')];
 
@@ -51,7 +53,7 @@ navigationItems.forEach(item => {
   item.addEventListener('click', () => setActiveNavigation(item.hash));
 });
 
-document.querySelector('.clock-card .button').addEventListener('click', () => {
+document.querySelector('.inspiration-card .button')?.addEventListener('click', () => {
   setActiveNavigation('#challenge');
 });
 
