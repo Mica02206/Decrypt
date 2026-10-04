@@ -15,23 +15,25 @@
   <script src="script.js" defer></script>
 </head>
 <body>
+  <canvas id="galaxy" aria-hidden="true"></canvas><div class="space-haze" aria-hidden="true"></div>
+  <button id="motion-toggle" type="button" aria-pressed="false" aria-label="Pause background animation">Pause motion</button>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="top-navigation">
     <div class="top-inner">
-      <span class="connection"><span class="dot"></span>SEC//ONLINE</span>
-      <span class="page-name">HOME</span>
-      <div class="system"><span>NET.SYS//44<strong>LOCKED</strong></span><span class="profile" aria-label="User profile"><i class="fa-regular fa-user" aria-hidden="true"></i></span></div>
+      <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">D<span> / </span></span><span>DECRYPT<small>CSS / USLS FIELD OPS</small></span></a>
+      
+      <a class="header-pass" href="#admission">Get your pass <i class="fa-solid fa-ticket" aria-hidden="true"></i></a>
     </div>
   </header>
 
   <main id="main" class="page-shell">
     <section class="hero section" id="home" aria-labelledby="hero-title">
       <div class="hero-badges"><span class="badge"><i class="fa-solid fa-microchip" aria-hidden="true"></i>CSS // USLS FIELD OPS</span><span class="badge open"><span class="dot"></span>OPEN TIL 4:30 PM</span></div>
-      <div class="hero-heading"><p class="eyebrow ruled">TACTICAL SENSORY EXPERIMENT</p><h1 id="hero-title">DECRYPT</h1><p class="subtitle">COUNTDOWN TO CHAOS</p><p class="hero-intro">Three agents. Twenty minutes.<br>Trust your squad. Beat the clock.</p><a class="hero-link" href="#admission">Explore your admission pass <i class="fa-solid fa-ticket" aria-hidden="true"></i></a><a class="hero-link ranking-link" href="#rankings">Squad rankings <i class="fa-solid fa-trophy" aria-hidden="true"></i></a></div>
+      <div class="hero-heading"><p class="eyebrow ruled">YOUR SENSES ARE THE CHALLENGE.</p><h1 id="hero-title">DECRYPT</h1><p class="subtitle">COUNTDOWN<br>TO <span>CHAOS.</span></p><p class="hero-intro">One cannot speak. One cannot hear. One cannot see.<br>Only together can you beat the clock.</p><a class="hero-link" href="#admission">Explore your admission pass <i class="fa-solid fa-ticket" aria-hidden="true"></i></a><a class="hero-link ranking-link" href="#rankings">Squad rankings <i class="fa-solid fa-trophy" aria-hidden="true"></i></a></div>
 
-      <div class="clock-card">
+      <div class="clock-card"><div class="orbital-rings" aria-hidden="true"><span></span><span></span><span></span></div><div class="clock-overline">LIVE SIMULATION <span> // 001</span></div>
         <div class="clock-heading"><span><i class="fa-regular fa-clock" aria-hidden="true"></i> DETONATION CLOCK</span><span class="sector">SECTOR MM31</span></div>
-        <div class="timer-line"><span id="countdown" class="timer" role="timer" aria-label="Time remaining: 17 minutes, 34 seconds">17:34.52</span><span class="live">LIVE</span></div>
+        <div class="timer-line"><span id="countdown" class="timer" role="timer" aria-label="Time remaining: 17 minutes, 34 seconds">17:34.52</span><span class="live">DEMO</span></div>
         <div class="progress-track" role="progressbar" aria-label="Time remaining" aria-valuemin="0" aria-valuemax="1200" aria-valuenow="1055"><div id="timer-progress" class="progress-fill"></div></div>
         <p class="clock-description">Can your squad decrypt the physical apparatus before core containment collapses?</p>
         <a class="button primary" href="#challenge">ENTER THE CIPHER <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
@@ -48,25 +50,13 @@
 
     <section class="section protocol" id="challenge" aria-labelledby="protocol-title">
       <p class="eyebrow"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> THE PROTOCOL // 3 ROLES, 1 OBJECTIVE</p>
-      <h2 id="protocol-title">Complete Sensory Restriction</h2>
+      <h2 id="protocol-title">Different senses.<br>One shared mission.</h2>
       <p class="section-description">Three operatives. Three restricted senses. Decode the signals, relay the instructions, and work together before the clock runs out.</p>
       <div class="role-list">
-        <article class="role-card"><div class="role-heading"><span class="role-emoji" aria-hidden="true">🙊</span><div><p class="agent">AGENT 01</p><h3>MUTE <span>// The Navigator</span></h3></div><span class="restriction">NO SPEECH</span></div><p class="role-description">Holds the classified schematics and decryption manual. No vocal communication allowed — translate each cipher step through gestures and hand signals.</p><p class="senses"><i class="fa-regular fa-eye" aria-hidden="true"></i> Senses: Sight Only <span>(Vocal Track Sealed)</span></p></article>
-        <article class="role-card agent-two"><div class="role-heading"><span class="role-emoji" aria-hidden="true">🙉</span><div><p class="agent">AGENT 02</p><h3>DEAF <span>// The Conduit</span></h3></div><span class="restriction">ACOUSTIC VOID</span></div><p class="role-description">Equipped with noise suppression. Observes Agent 01’s signals and translates them into spoken commands for Agent 03. The bridge between the plan and the action.</p><p class="senses"><i class="fa-solid fa-ear-deaf" aria-hidden="true"></i> Senses: Voice + Sight <span>(Audio Zeroed)</span></p></article>
-        <article class="role-card agent-three"><div class="role-heading"><span class="role-emoji" aria-hidden="true">🙈</span><div><p class="agent">AGENT 03</p><h3>BLIND <span>// The Operative</span></h3></div><span class="restriction">SIGHT SEALED</span></div><p class="role-description">The only operative allowed to touch the puzzle rig. Fully blindfolded, executes each delicate maneuver using touch and the instructions of their teammates.</p><p class="senses"><i class="fa-regular fa-hand" aria-hidden="true"></i> Senses: Touch + Hearing <span>(Sight Deprived)</span></p></article>
+        <article class="role-card"><div class="role-heading"><span class="role-emoji" aria-hidden="true"><i class="fa-solid fa-comment-slash"></i></span><div><p class="agent">AGENT 01</p><h3>MUTE <span>// The Navigator</span></h3></div><span class="restriction">NO SPEECH</span></div><p class="role-description">Holds the classified schematics and decryption manual. No vocal communication allowed — translate each cipher step through gestures and hand signals.</p><p class="senses"><i class="fa-regular fa-eye" aria-hidden="true"></i> Senses: Sight Only <span>(Vocal Track Sealed)</span></p></article>
+        <article class="role-card agent-two"><div class="role-heading"><span class="role-emoji" aria-hidden="true"><i class="fa-solid fa-ear-deaf"></i></span><div><p class="agent">AGENT 02</p><h3>DEAF <span>// The Conduit</span></h3></div><span class="restriction">ACOUSTIC VOID</span></div><p class="role-description">Equipped with noise suppression. Observes Agent 01’s signals and translates them into spoken commands for Agent 03. The bridge between the plan and the action.</p><p class="senses"><i class="fa-solid fa-ear-deaf" aria-hidden="true"></i> Senses: Voice + Sight <span>(Audio Zeroed)</span></p></article>
+        <article class="role-card agent-three"><div class="role-heading"><span class="role-emoji" aria-hidden="true"><i class="fa-solid fa-eye-slash"></i></span><div><p class="agent">AGENT 03</p><h3>BLIND <span>// The Operative</span></h3></div><span class="restriction">SIGHT SEALED</span></div><p class="role-description">The only operative allowed to touch the puzzle rig. Fully blindfolded, executes each delicate maneuver using touch and the instructions of their teammates.</p><p class="senses"><i class="fa-regular fa-hand" aria-hidden="true"></i> Senses: Touch + Hearing <span>(Sight Deprived)</span></p></article>
       </div>
-    </section>
-
-    <section class="section admission" id="admission" aria-labelledby="admission-title">
-      <p class="eyebrow">CLASSIFIED PASS // CN:A01</p>
-      <div class="section-title-row"><h2 id="admission-title">Your Admission Pass</h2><span class="price-badge">3 FOR 100 PHP</span></div>
-      <div class="ticket"><div class="ticket-meta"><span>BATCH: OCT 5–9</span><span>ACCESS: 8:30 AM–4:30 PM</span></div><a class="ticket-art ticket-image" href="assets/decrypt-ticket.png" target="_blank" rel="noopener" aria-label="View the full-size DECRYPT admission ticket (opens in a new tab)"><img src="assets/decrypt-ticket.png" alt="DECRYPT Countdown to Chaos admission ticket, CN:A01. Room MM31, October 5 to 9, 8:30 AM to 4:30 PM. Three for 100 PHP. Organized by Computer Science Society." width="1300" height="390" loading="lazy"></a><p class="ticket-image-hint">Tap the ticket to view full size.</p><div class="ticket-bottom"><div><p class="small-label">DESIGNATED BOOTH</p><strong>ROOM MM31</strong></div><button id="claim-button" class="button primary" type="button" aria-expanded="false" aria-controls="claim-details"><i class="fa-solid fa-user-check" aria-hidden="true"></i> CLAIM AT BOOTH</button></div><p id="claim-details" class="claim-details" hidden>Visit Room MM31 on the 3rd floor of Mutien Marie Building. Pay ₱100 for your squad of three and confirm your slot with the booth coordinators. This page does not reserve a slot.</p></div>
-    </section>
-
-    <section class="section location" id="location" aria-labelledby="location-title">
-      <p class="eyebrow"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> NAV PROTOCOL // MM31</p><h2 id="location-title">Find The Decrypt Booth</h2><p class="section-description">Follow campus coordinates to Mutien Marie Building.</p>
-      <div class="coordinate-card"><div><p class="small-label">PRIMARY COORDINATE</p><h3>ROOM MM31</h3><p><i class="fa-solid fa-building" aria-hidden="true"></i> Mutien Marie Building (Locator #39)</p></div><div class="floor"><span>FLOOR</span><strong>3RD</strong></div></div>
-      <div class="map-card"><div class="map-label"><span><i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> CAMPUS TACTICAL MAP</span><span>MUTIEN MARIE // #39</span></div><a class="campus-map-link" href="assets/campus-map.webp" target="_blank" rel="noopener" aria-label="Open full-size campus map in a new tab"><img src="assets/campus-map.webp" width="1920" height="2133" loading="lazy" alt="University of St. La Salle college map. Mutien Marie Building is locator 39, near The Forum (13) and Nurse Cafeteria (14)."><span class="map-expand"><i class="fa-solid fa-expand" aria-hidden="true"></i> View full-size map</span></a><div class="navigation-brief"><p class="small-label">FIELD NAVIGATION BRIEF</p><p><i class="fa-solid fa-route" aria-hidden="true"></i><span>Enter via <strong>Gate 1 or Gate 2</strong>, proceed past The Forum (#13) and Nurse Cafeteria (#14), then head to <strong class="green">Mutien Marie Building, 3rd Floor, Room 31.</strong></span></p></div></div>
     </section>
 
     <section class="section rankings" id="rankings" aria-labelledby="rankings-title">
@@ -78,9 +68,21 @@
       </div>
     </section>
 
+    <section class="section admission" id="admission" aria-labelledby="admission-title">
+      <p class="eyebrow">CLASSIFIED PASS // CN:A01</p>
+      <div class="section-title-row"><h2 id="admission-title">Your squad.<br>Your next challenge.</h2><span class="price-badge">3 AGENTS / 100 PHP</span><p class="section-description">Bring your trio or find your teammates at the booth. Your mission starts in Room MM31.</p></div>
+      <div class="ticket"><div class="ticket-meta"><span>BATCH: OCT 5–9</span><span>ACCESS: 8:30 AM–4:30 PM</span></div><a class="ticket-art ticket-image" href="assets/decrypt-ticket.png" target="_blank" rel="noopener" aria-label="View the full-size DECRYPT admission ticket (opens in a new tab)"><img src="assets/decrypt-ticket.png" alt="DECRYPT Countdown to Chaos admission ticket, CN:A01. Room MM31, October 5 to 9, 8:30 AM to 4:30 PM. Three for 100 PHP. Organized by Computer Science Society." width="1300" height="390" loading="lazy"></a><p class="ticket-image-hint">Tap the ticket to view full size.</p><div class="ticket-bottom"><div><p class="small-label">DESIGNATED BOOTH</p><strong>ROOM MM31</strong></div><button id="claim-button" class="button primary" type="button" aria-expanded="false" aria-controls="claim-details"><i class="fa-solid fa-user-check" aria-hidden="true"></i> CLAIM AT BOOTH</button></div><p id="claim-details" class="claim-details" hidden>Visit Room MM31 on the 3rd floor of Mutien Marie Building. Pay ₱100 for your squad of three and confirm your slot with the booth coordinators. This page does not reserve a slot.</p></div>
+    </section>
+
+    <section class="section location" id="location" aria-labelledby="location-title">
+      <p class="eyebrow"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> NAV PROTOCOL // MM31</p><h2 id="location-title">Your mission starts here.</h2><p class="section-description">Follow campus coordinates to Mutien Marie Building.</p>
+      <div class="coordinate-card"><div><p class="small-label">PRIMARY COORDINATE</p><h3>ROOM MM31</h3><p><i class="fa-solid fa-building" aria-hidden="true"></i> Mutien Marie Building (Locator #39)</p></div><div class="floor"><span>FLOOR</span><strong>3RD</strong></div></div>
+      <div class="map-card"><div class="map-label"><span><i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i> CAMPUS TACTICAL MAP</span><span>MUTIEN MARIE // #39</span></div><a class="campus-map-link" href="assets/campus-map.webp" target="_blank" rel="noopener" aria-label="Open full-size campus map in a new tab"><img src="assets/campus-map.webp" width="1920" height="2133" loading="lazy" alt="University of St. La Salle college map. Mutien Marie Building is locator 39, near The Forum (13) and Nurse Cafeteria (14)."><span class="map-expand"><i class="fa-solid fa-expand" aria-hidden="true"></i> View full-size map</span></a><div class="navigation-brief"><p class="small-label">FIELD NAVIGATION BRIEF</p><p><i class="fa-solid fa-route" aria-hidden="true"></i><span>Enter via <strong>Gate 1 or Gate 2</strong>, proceed past The Forum (#13) and Nurse Cafeteria (#14), then head to <strong class="green">Mutien Marie Building, 3rd Floor, Room 31.</strong></span></p></div></div>
+    </section>
+
     <footer class="section footer"><div class="footer-card"><h2><i class="fa-solid fa-fingerprint" aria-hidden="true"></i> Ready To Face The Chaos?</h2><p>Assemble your trio or walk up solo or in pairs — our booth coordinators will pair you with fellow operatives on-site. Secure your slot directly at Room MM31.</p><p class="organizer">ORGANIZED BY: <strong>COMPUTER SCIENCE SOCIETY</strong></p></div></footer>
   </main>
 
-  <nav class="bottom-navigation" aria-label="Main navigation"><div class="bottom-inner"><a class="nav-item active" href="#home" aria-current="location"><i class="fa-solid fa-terminal" aria-hidden="true"></i><span>HOME</span></a><a class="nav-item" href="#challenge"><i class="fa-solid fa-lock-open" aria-hidden="true"></i><span>CHALLENGE</span></a><a class="nav-item" href="#location"><i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i><span>MAP</span></a></div></nav>
+  <nav class="bottom-navigation" aria-label="Main navigation"><div class="bottom-inner"><a class="nav-item active" href="#home" aria-current="location"><i class="fa-solid fa-terminal" aria-hidden="true"></i><span>HOME</span></a><a class="nav-item" href="#challenge"><i class="fa-solid fa-lock-open" aria-hidden="true"></i><span>CHALLENGE</span></a><a class="nav-item" href="#rankings"><i class="fa-solid fa-ranking-star" aria-hidden="true"></i><span>RANKINGS</span></a><a class="nav-item" href="#location"><i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i><span>MAP</span></a></div></nav>
 </body>
 </html>

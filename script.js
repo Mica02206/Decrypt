@@ -236,3 +236,80 @@ document.getElementById('ranking-table-wrap').hidden = false;
   await loadBoard();
   setInterval(() => { if (!document.hidden) loadBoard(); }, 30000);
 })();
+
+// Decorative star field: capped resolution, frame-rate independent movement,
+// and no animation work while the page is hidden or motion is disabled.
+(() => {
+  const canvas = document.getElementById('galaxy');
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  const preference = matchMedia('(prefers-reduced-motion: reduce)');
+  const toggle = document.getElementById('motion-toggle');
+  let paused = preference.matches;
+  let width = 0, height = 0, stars = [], frame = 0, previous = 0, elapsed = 0;
+  function resize() {
+    width = innerWidth; height = innerHeight;
+    const ratio = Math.min(devicePixelRatio || 1, 1.5);
+    canvas.width = width * ratio; canvas.height = height * ratio;
+    ctx.setTransform(ratio,0,0,ratio,0,0);
+    stars = Array.from({length:Math.min(220, Math.round(width * height / 4300))}, () => ({
+      x:Math.random()*width,y:Math.random()*height,r:.4+Math.random()*1.4,
+      speed:2+Math.random()*9,phase:Math.random()*Math.PI*2
+    }));
+    paint(0);
+  }
+  function paint(delta) {
+    ctx.clearRect(0,0,width,height);
+    for (const star of stars) {
+      star.x += delta * star.speed * .4; star.y -= delta * star.speed;
+      if(star.y < -4) star.y=height+4;
+      if(star.x > width+4) star.x=-4;
+      ctx.globalAlpha=.3+(.5+.5*Math.sin(elapsed*.6+star.phase))*.55;
+      ctx.fillStyle=star.r>1.4?'#91fff2':'#bdc9fa';
+      ctx.beginPath(); ctx.arc(star.x,star.y,star.r,0,Math.PI*2);ctx.fill();
+    }
+    // An occasional short meteor moves across the background, never flashing.
+    const meteorPhase = elapsed % 16;
+    if(meteorPhase<1.6 && elapsed>2 && !paused) {
+      const x=width*.18+meteorPhase*width*.4,y=height*.08+meteorPhase*height*.16;
+      const gradient=ctx.createLinearGradient(x-110,y-42,x,y);
+      gradient.addColorStop(0,'transparent'); gradient.addColorStop(1,'#a0f7ff');
+      ctx.globalAlpha=Math.sin(meteorPhase/1.6*Math.PI)*.6;
+      ctx.strokeStyle=gradient;ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(x-110,y-42);ctx.lineTo(x,y);ctx.stroke();
+    }
+    ctx.globalAlpha=1;
+  }
+  function animate(now) {
+    const delta=previous?Math.min((now-previous)/1000,.05):0;
+    previous=now;elapsed+=delta;paint(delta);
+    frame=requestAnimationFrame(animate);
+  }
+  function syncMotion() {
+    cancelAnimationFrame(frame);previous=0;
+    document.body.classList.toggle('motion-paused',paused);
+    toggle.textContent=paused?'Enable motion':'Pause motion';
+    toggle.setAttribute('aria-label',paused?'Enable background animation':'Pause background animation');
+    toggle.setAttribute('aria-pressed',String(paused));
+    if(!paused&&!document.hidden) frame=requestAnimationFrame(animate);else paint(0);
+  }
+  toggle.addEventListener('click',()=>{paused=!paused;syncMotion();});
+  preference.addEventListener('change',()=>{paused=preference.matches;syncMotion();});
+  document.addEventListener('visibilitychange',syncMotion);
+  addEventListener('resize',resize);
+  resize();syncMotion();
+})();
+
+// Keep navigation aligned with the section being read, including rankings.
+let navigationScheduled = false;
+addEventListener('scroll', () => {
+  if (navigationScheduled) return;
+  navigationScheduled = true;
+  requestAnimationFrame(() => {
+    const visibleSections = navigationItems.map(item => document.querySelector(item.hash)).filter(Boolean)
+      .sort((a,b) => a.offsetTop-b.offsetTop);
+    let current = visibleSections[0];
+    for (const section of visibleSections) if (section.getBoundingClientRect().top < innerHeight * .4) current = section;
+    if (current) setActiveNavigation(`#${current.id}`);
+    navigationScheduled = false;
+  });
+}, {passive:true});
