@@ -1217,6 +1217,91 @@ h2,h3,.button,.header-pass {
     transform: none;
   }
 }
+
+/* Origin: full uncropped image with a compact information strip */
+.inspiration-card {
+  display: block;
+  max-width: 920px;
+  min-height: 0;
+  overflow: hidden;
+  background: linear-gradient(145deg,rgba(15,29,47,.95),rgba(7,15,27,.98));
+}
+.inspiration-media {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+  background: #050914;
+}
+.inspiration-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+  animation: none;
+}
+.inspiration-media::after {
+  background: linear-gradient(0deg,rgba(4,10,20,.22),transparent 24%);
+}
+.inspiration-content {
+  position: static;
+  min-height: 0;
+  padding: 24px 28px 26px;
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  grid-template-areas: 'origin-label origin-facts origin-action';
+  align-items: center;
+  gap: 20px;
+}
+.inspiration-content .eyebrow {
+  grid-area: origin-label;
+  margin: 0;
+}
+.inspiration-content h2 {
+  grid-area: origin-title;
+  max-width: none;
+  font-size: clamp(1.7rem,3vw,2.5rem);
+  line-height: 1.05;
+  letter-spacing: -.045em;
+}
+.inspiration-content>p:not(.eyebrow) {
+  grid-area: origin-copy;
+  margin: 8px 0 0;
+  font-size: 14px;
+}
+.origin-facts {
+  grid-area: origin-facts;
+  align-self: center;
+  margin: 0;
+}
+.origin-action {
+  grid-area: origin-action;
+  justify-self: end;
+  align-self: end;
+}
+@media(max-width:700px) {
+  .inspiration-card,
+  .inspiration-content { min-height: 0; }
+  .inspiration-media { min-height: 0; aspect-ratio: 16 / 9; }
+  .inspiration-media img { object-fit: contain; object-position: center; }
+  .inspiration-content {
+    padding: 21px 19px 23px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'origin-label'
+      'origin-facts'
+      'origin-action';
+    gap: 8px;
+  }
+  .inspiration-content h2 {
+    max-width: none;
+    font-size: clamp(1.65rem,8vw,2.25rem);
+  }
+  .origin-facts { margin: 8px 0 10px; }
+  .origin-action { justify-self: start; }
+}
 @media(max-width:480px) {
   .protocol,.rankings,.admission { padding-block: 62px; }
   .role-card { padding: 22px; }
