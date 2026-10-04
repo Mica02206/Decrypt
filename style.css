@@ -1221,7 +1221,9 @@ h2,h3,.button,.header-pass {
 /* Rankings: one continuous surface instead of stacked cards */
 .rankings .ranking-prize {
   margin: 0;
-  padding: 15px 0 18px;
+  padding: 24px 0 28px;
+  display: block;
+  text-align: center;
   border: 0;
   border-bottom: 1px solid rgba(157,180,211,.14);
   border-radius: 0;
@@ -1236,8 +1238,21 @@ h2,h3,.button,.header-pass {
   font-size: 19px;
 }
 .rankings .ranking-prize .eyebrow { margin-bottom: 1px; }
-.rankings .ranking-prize h3 { font-size: 17px; }
-.rankings .ranking-prize p:last-child { margin-top: 2px; }
+.rankings .ranking-prize .eyebrow {
+  width: max-content;
+  margin: 0 auto 8px;
+}
+.rankings .ranking-prize h3 {
+  font-size: clamp(1.8rem,3.5vw,2.8rem);
+  line-height: 1.04;
+  letter-spacing: -.05em;
+}
+.rankings .ranking-prize p:last-child {
+  max-width: 52ch;
+  margin: 10px auto 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
 .rankings .ranking-layout { gap: 0; }
 .rankings .ranking-board {
   padding: 18px 0 0;
