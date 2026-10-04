@@ -1424,6 +1424,114 @@ h2,h3,.button,.header-pass {
   .origin-facts { margin: 8px 0 10px; }
   .origin-action { justify-self: start; }
 }
+
+/* Flat utility footer */
+.footer {
+  max-width: 1080px;
+  padding: 56px 0 120px;
+}
+.site-footer {
+  display: grid;
+  grid-template-columns: auto minmax(220px,1fr) auto;
+  align-items: center;
+  gap: 34px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(157,180,211,.16);
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 240px;
+}
+.footer-brand .footer-logo {
+  width: 56px;
+  height: 46px;
+  object-fit: contain;
+}
+.footer-brand span { display: block; }
+.footer-brand small {
+  display: block;
+  color: var(--muted);
+  font: 700 8px/1.4 var(--mono);
+  letter-spacing: .14em;
+}
+.footer-brand strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--text);
+  font: 800 22px/1 var(--display);
+  letter-spacing: .08em;
+}
+.footer-copyright {
+  color: #9ba9bc;
+  font: 500 11px/1.5 var(--mono);
+  text-align: center;
+}
+.footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.footer-cta,
+.footer-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(157,180,211,.24);
+  transition: color .2s ease,border-color .2s ease,background .2s ease;
+}
+.footer-cta {
+  min-height: 42px;
+  padding: 10px 18px;
+  border-radius: 24px;
+  color: var(--text);
+  font: 700 10px var(--display);
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+.footer-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #c8d3df;
+  font-size: 13px;
+}
+.footer-cta:hover,
+.footer-icon:hover {
+  color: var(--cyan);
+  border-color: rgba(102,247,237,.55);
+  background: rgba(102,247,237,.06);
+}
+@media(max-width:900px) {
+  .site-footer {
+    grid-template-columns: 1fr auto;
+  }
+  .footer-copyright {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    text-align: left;
+  }
+}
+@media(max-width:620px) {
+  .footer { padding: 44px 0 130px; }
+  .site-footer {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 24px;
+    padding-top: 30px;
+  }
+  .footer-brand { min-width: 0; }
+  .footer-copyright {
+    grid-column: 1;
+    grid-row: auto;
+    text-align: center;
+    font-size: 9px;
+  }
+  .footer-actions { justify-content: center; flex-wrap: wrap; }
+  .footer-cta { flex-basis: 100%; }
+}
 @media(max-width:480px) {
   .protocol,.rankings,.admission { padding-block: 62px; }
   .role-card { padding: 22px; }
