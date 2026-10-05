@@ -1947,3 +1947,93 @@ h2,h3,.button,.header-pass {
 @media(prefers-reduced-motion:reduce) {
   .hero::after { animation:none; }
 }
+
+/* Separate Normal and Hard ranking controls */
+.mode-switch {
+  width: min(100%,560px);
+  margin: 0 auto 18px;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 4px;
+  border-radius: 14px;
+  background: rgba(8,18,32,.32);
+  -webkit-backdrop-filter: blur(16px) saturate(125%);
+  backdrop-filter: blur(16px) saturate(125%);
+  box-shadow: inset 0 1px rgba(255,255,255,.06);
+}
+.mode-tab {
+  min-height: 54px;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #8998ad;
+  font-family: var(--display);
+  transition: color .2s ease,background .2s ease,box-shadow .2s ease;
+}
+.mode-tab span,
+.mode-tab small { display: block; }
+.mode-tab span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+.mode-tab small {
+  margin-top: 2px;
+  font: 700 8px var(--mono);
+  letter-spacing: .08em;
+  opacity: .72;
+}
+.mode-tab.active {
+  color: var(--cyan);
+  background: rgba(102,247,237,.09);
+  box-shadow: inset 0 0 0 1px rgba(102,247,237,.12);
+}
+.mode-tab[data-mode="hard"].active {
+  color: var(--purple);
+  background: rgba(182,156,255,.1);
+  box-shadow: inset 0 0 0 1px rgba(182,156,255,.14);
+}
+.staff-mode-fieldset { margin-bottom: 14px!important; }
+.staff-mode-options {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 8px;
+}
+.staff-mode-options label { margin: 0; }
+.staff-mode-options input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.staff-mode-options span {
+  min-height: 40px;
+  padding: 9px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(17,33,52,.56);
+  color: #91a0b4;
+  font: 700 9px var(--mono);
+  text-align: center;
+  cursor: pointer;
+}
+.staff-mode-options input:checked+span {
+  color: var(--cyan);
+  background: rgba(102,247,237,.1);
+  box-shadow: inset 0 0 0 1px rgba(102,247,237,.2);
+}
+.staff-mode-options label:last-child input:checked+span {
+  color: var(--purple);
+  background: rgba(182,156,255,.1);
+  box-shadow: inset 0 0 0 1px rgba(182,156,255,.2);
+}
+.staff-mode-options input:focus-visible+span {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+@media(max-width:480px) {
+  .mode-switch { width: 100%; }
+  .mode-tab { min-height: 50px; padding-inline: 8px; }
+}

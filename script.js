@@ -125,8 +125,14 @@ claimButton.addEventListener('click', () => {
 const supabaseUrl = 'https://xzivwqdonvyodpvvjzui.supabase.co';
 const supabaseKey = 'sb_publishable_hFzHyRQ5bjJpyIZl5eytag_c85HYwaV';
 let squadRecords = [];
+let activeRankingMode = 'normal';
+const rankingModes = {
+  normal: {label:'NORMAL MODE',limitSeconds:1200},
+  hard: {label:'HARD MODE',limitSeconds:900}
+};
 const rankingRows = document.getElementById('ranking-rows');
 const rankingFeedback = document.getElementById('ranking-feedback');
+const modeTabs = [...document.querySelectorAll('.mode-tab')];
 function ordinalRank(value) {
   const lastTwo = value % 100;
   const suffix = lastTwo >= 11 && lastTwo <= 13 ? 'th' : ({1:'st',2:'nd',3:'rd'}[value % 10] || 'th');
@@ -154,6 +160,7 @@ function renderRankings() {
     rankingRows.append(row);
   });
   addOpenRankingPlaces();
+  document.getElementById('ranking-mode-label').textContent = `${rankingModes[activeRankingMode].label} · TOP OPERATIVES`;
   document.getElementById('ranking-count').textContent = `${squadRecords.length} squad${squadRecords.length === 1 ? '' : 's'}`;
   document.getElementById('ranking-empty').hidden = squadRecords.length > 0;
   document.getElementById('ranking-table-wrap').hidden = false;
@@ -192,24 +199,41 @@ document.getElementById('ranking-table-wrap').hidden = false;
   });
   let staffUser = null;
   let authGeneration = 0;
-  let loading = false;
+  let loadGeneration = 0;
   async function loadBoard() {
-    if (loading) return;
-    loading = true;
+    const generation = ++loadGeneration;
     const refresh = document.getElementById('refresh-rankings');
     refresh.disabled = true;
+    boardStatus.textContent = `Loading ${rankingModes[activeRankingMode].label.toLowerCase()} results...`;
     try {
-      const {data, error} = await client.from('leaderboard').select('id,name,seconds,created_at')
-        .order('seconds').order('created_at').order('id').limit(5);
+      const requestedMode = activeRankingMode;
+      const {data, error} = await client.from('leaderboard').select('id,name,seconds,mode,created_at')
+        .eq('mode',requestedMode).order('seconds').order('created_at').order('id').limit(5);
       if (error) throw error;
+      if (generation !== loadGeneration || requestedMode !== activeRankingMode) return;
       squadRecords = data.slice(0, 5);
       renderRankings();
-      boardStatus.textContent = 'Top 5 verified challenge results. Updates every 30 seconds.';
-    } catch {
-      boardStatus.textContent = 'Rankings are unavailable. Please try Refresh rankings shortly.';
+      boardStatus.textContent = `Top 5 verified ${rankingModes[activeRankingMode].label.toLowerCase()} results. Updates every 30 seconds.`;
+    } catch (error) {
+      if (generation !== loadGeneration) return;
+      const missingModeColumn = String(error?.message || '').toLowerCase().includes('mode');
+      boardStatus.textContent = missingModeColumn ? 'Leaderboard modes need the Supabase mode migration.' : 'Rankings are unavailable. Please try Refresh rankings shortly.';
       if (!squadRecords.length) document.getElementById('ranking-count').textContent = 'Unavailable';
-    } finally { loading = false; refresh.disabled = false; }
+    } finally { if (generation === loadGeneration) refresh.disabled = false; }
   }
+  function selectRankingMode(mode) {
+    if (!rankingModes[mode]) return;
+    activeRankingMode = mode;
+    modeTabs.forEach(tab => {
+      const active = tab.dataset.mode === mode;
+      tab.classList.toggle('active',active);
+      tab.setAttribute('aria-selected',String(active));
+    });
+    document.getElementById('ranking-mode-label').textContent = `${rankingModes[mode].label} · TOP OPERATIVES`;
+    document.getElementById('ranking-count').textContent = 'Loading...';
+    loadBoard();
+  }
+  modeTabs.forEach(tab => tab.addEventListener('click',() => selectRankingMode(tab.dataset.mode)));
   async function updateStaff(session) {
     const generation = ++authGeneration;
     staffUser = null;
@@ -253,30 +277,48 @@ document.getElementById('ranking-table-wrap').hidden = false;
     signout.disabled = false;
   });
   let pendingResult = null;
+  const resultModeInputs = [...form.querySelectorAll('input[name="result-mode"]')];
+  const challengeMinutes = document.getElementById('challenge-minutes');
+  function syncResultModeLimit() {
+    const mode = form.querySelector('input[name="result-mode"]:checked')?.value || 'normal';
+    challengeMinutes.max = String(rankingModes[mode].limitSeconds / 60);
+    if (Number(challengeMinutes.value) > Number(challengeMinutes.max)) challengeMinutes.value = challengeMinutes.max;
+    rankingFeedback.textContent = '';
+  }
+  resultModeInputs.forEach(input => input.addEventListener('change',syncResultModeLimit));
+  syncResultModeLimit();
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (!staffUser) { rankingFeedback.textContent = 'Sign in with an authorized staff account first.'; return; }
     const name = document.getElementById('squad-name').value.trim();
     const minutes = Number(document.getElementById('challenge-minutes').value);
     const seconds = Number(document.getElementById('challenge-seconds').value);
+    const mode = form.querySelector('input[name="result-mode"]:checked')?.value || 'normal';
+    const modeConfig = rankingModes[mode];
     const total = minutes * 60 + seconds;
-    if (!name || name.length > 40 || !Number.isInteger(minutes) || !Number.isInteger(seconds) || minutes < 0 || seconds < 0 || seconds > 59 || total <= 0 || total > 900) {
-      rankingFeedback.textContent = 'Enter a squad name and a completion time from 00:01 to 15:00.';
+    if (!name || name.length > 40 || !modeConfig || !Number.isInteger(minutes) || !Number.isInteger(seconds) || minutes < 0 || seconds < 0 || seconds > 59 || total <= 0 || total > modeConfig.limitSeconds) {
+      rankingFeedback.textContent = `Enter a squad name and a ${modeConfig?.label.toLowerCase() || 'valid'} time from 00:01 to ${mode === 'hard' ? '15:00' : '20:00'}.`;
       return;
     }
     const button = form.querySelector('button');
     button.disabled = true;
     rankingFeedback.textContent = 'Saving verified result...';
     // Reuse the ID on retry so an uncertain network response cannot duplicate a score.
-    if (!pendingResult || pendingResult.name !== name || pendingResult.seconds !== total || pendingResult.submitted_by !== staffUser.id) {
-      pendingResult = {id:crypto.randomUUID(),name,seconds:total,submitted_by:staffUser.id};
+    if (!pendingResult || pendingResult.name !== name || pendingResult.seconds !== total || pendingResult.mode !== mode || pendingResult.submitted_by !== staffUser.id) {
+      pendingResult = {id:crypto.randomUUID(),name,seconds:total,mode,submitted_by:staffUser.id};
     }
     try {
       const {error} = await client.from('leaderboard').insert(pendingResult);
       if (error && error.code !== '23505') throw error;
       pendingResult = null;
       document.getElementById('squad-name').value = '';
-      rankingFeedback.textContent = `${name}: verified result saved.`;
+      rankingFeedback.textContent = `${name}: verified ${modeConfig.label.toLowerCase()} result saved.`;
+      activeRankingMode = mode;
+      modeTabs.forEach(tab => {
+        const active = tab.dataset.mode === mode;
+        tab.classList.toggle('active',active);
+        tab.setAttribute('aria-selected',String(active));
+      });
       await loadBoard();
     } catch { rankingFeedback.textContent = 'Result could not be saved. Check your staff access and connection, then retry.'; }
     finally { button.disabled = false; }
