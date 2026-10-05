@@ -2037,3 +2037,16 @@ h2,h3,.button,.header-pass {
   .mode-switch { width: 100%; }
   .mode-tab { min-height: 50px; padding-inline: 8px; }
 }
+
+/* Keep the leaderboard focused on wide screens */
+.rankings .ranking-layout {
+  width: min(100%,900px);
+  margin-inline: auto;
+}
+.rankings .mode-switch {
+  width: min(100%,460px);
+}
+@media(max-width:700px) {
+  .rankings .ranking-layout,
+  .rankings .mode-switch { width: 100%; }
+}
